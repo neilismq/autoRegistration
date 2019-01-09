@@ -8,27 +8,27 @@ todo:找到医院id和部门id
 {
   "data": [
     {
+       //出诊号
       "dutySourceId": 59980692,
-      //出诊号
-      "portrait": "",
       //画像
-      "doctorName": "普通门诊",
+      "portrait": "",
       //医生名称
+      "doctorName": "普通门诊",
       "doctorTitleName": "普通门诊",
-      "skill": "",
       //擅长技能
-      "totalFee": 50.0,
+      "skill": "",
       //价格
-      "remainAvailableNumber": 0,
+      "totalFee": 50.0,
       //剩余可用的号
-      "dutySourceStatus": 1,
+      "remainAvailableNumber": 0,
       //出诊号状态
-      "hospitalId": 142,
+      "dutySourceStatus": 1,
       //医院id
-      "departmentId": "200039524",
+      "hospitalId": 142,
       //部门id
-      "doctorId": "201155034",
+      "departmentId": "200039524",
       //医生id
+      "doctorId": "201155034",
       "drCode": null,
       "planCode": null,
       "dutyDate": null,
@@ -37,13 +37,13 @@ todo:找到医院id和部门id
       "majorId": null,
       "mapDoctorId": null,
       "departmentName": null,
-      "isShowFee": 1,
       //是否显示费用
+      "isShowFee": 1,
       "dlDutySources": null,
-      "morningnum": 0,
       //早上号？
-      "afternoonnum": 0,
+      "morningnum": 0,
       //下午号？
+      "afternoonnum": 0,
       "majorName": null,
       "majorIntroduce": null,
       "mapDutySourceId": null,
@@ -79,7 +79,29 @@ http://www.bjguahao.gov.cn/v/sendorder.htm POST
 http://www.bjguahao.gov.cn/order/confirmV1.htm POST
 dutySourceId=59981344&hospitalId=142&departmentId=200039608&doctorId=201147114&patientId=230962426&hospitalCardId=&medicareCardId=&reimbursementType=1&smsVerifyCode=497121&childrenBirthday=&dlRegType=-1&dlMajorId=&mapDoctorId=&isAjax=true
 {"msg":"成功","code":1,"orderId":"100733160","isLineUp":false}
+dutySourceId-出诊号 hospitalId-医院id departmentId-科室id doctorId-医生id patientId-病人id  hospitalCardId-就医卡id medicareCardId-医保卡id  reimbursementType-报销类型 smsVerifyCode-手机验证码  childrenBirthday-生日  dlRegType=-1固定写法，看过代码了，是干扰项 dlMajorId和mapDoctorId,固定为空,干扰项
+<option value="-1">==请选择==</option>
+<option value="1">医疗保险</option>
+<option value="2">商业保险</option>
+<option value="3">公费医疗</option>
+<option value="4">新农合</option>
+<option value="5">异地医保</option>
+<option value="6">红本医疗</option>
+<option value="7">工伤</option>
+<option value="8">一老一小</option>
+<option value="9">超转</option>
+<option value="10">自费</option>
+<option value="11">生育险</option>
+<option value="12">其他</option>
 
 取消号
 http://www.bjguahao.gov.cn/order/cel.htm  POST
 orderId=100733160&hospitalType=1&isAjax=true
+取消预约返回结果：{"code":200,"msg":"OK"}
+
+/order/confirm/142-200039608-201147114-59981348.htm
+从左到右依次为：医院id-科室id-医生id-出诊号
+
+查询病人信息
+http://www.bjguahao.gov.cn/islogin.htm POST
+isAjax=true

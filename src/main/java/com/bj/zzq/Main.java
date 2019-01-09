@@ -21,8 +21,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
+ * 取消预约后，该号不会马上放出来，fuck~
+ *
  * @Author: zhaozhiqiang
  * @Date: 2019/1/8
  * @Description:
@@ -32,11 +35,36 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
-        main.login();
+        String username = "18511914092";
+        String password = "zzq798828932";
+//        //医院名称，全称
+//        String hospitalName = "";
+//        //科室名称，全称
+//        String departmentName = "";
+//        //预约日期 yyyy-MM-dd
+//        String date = "";
+//        //上午还是下午 1-上午，2-下午
+//        String amOrPm = "";
+//        //医生名称,包括 普通门诊、副主任医师、主任医师、真正姓名、
+//        String doctorName = "";
+//        //医生职位,包括 普通门诊、副主任医师、主任医师、知名专家
+//        String doctorPosition = "";
+
+        //登录账号
+        main.login(username, password);
+        //main.cancleOrder("100747890");
+        //因为验证码发送较慢，先发送
         main.sendValidateCode();
+        //出诊号-北京大学第三医院-中医科-普通门诊（医生）-病人id-就医卡号-医保卡号-报销类型-验证码
+        String[] test = {"59981348", "142", "200039608", "201147114", "230962426", "", "", "1"};
+        //先从控制台获取验证码
+        System.out.print("请输入验证码：");
+        Scanner scan = new Scanner(System.in);
+        String validateCode = scan.nextLine();
+        main.order(test[0], test[1], test[2], test[3], test[4], test[5], test[6], test[7], validateCode);
     }
 
-    private static String base64ToString(String str) {
+    public static String base64ToString(String str) {
         try {
             str = Base64.getEncoder().encodeToString(str.getBytes("utf-8"));
         } catch (UnsupportedEncodingException e) {
@@ -46,7 +74,7 @@ public class Main {
     }
 
     //请求工具
-    private static CloseableHttpResponse doHttp(String method, String url, HashMap<String, String> headers, HashMap<String, String> params) {
+    public static CloseableHttpResponse doHttp(String method, String url, HashMap<String, String> headers, HashMap<String, String> params) {
         //默认http客户端，毫秒级
         CloseableHttpClient httpclient = HttpClients.createDefault();
 
@@ -87,8 +115,8 @@ public class Main {
                 httpRequestBase.addHeader(name, headers.get(name));
             }
         }
-        if(!"".equals(cookie)){
-            httpRequestBase.addHeader("Cookie",cookie);
+        if (!"".equals(cookie)) {
+            httpRequestBase.addHeader("Cookie", cookie);
         }
 
         // 执行请求
@@ -104,16 +132,15 @@ public class Main {
     /**
      * 登录
      */
-    private void login() {
+    public void login(String username, String password) {
         //登录地址
         String loginUrl = "http://www.bjguahao.gov.cn/quicklogin.htm";
-        String username = "18511914092";
-        String password = "zzq798828932";
 
         //参数
         HashMap<String, String> params = new HashMap();
         params.put("mobileNo", base64ToString(username));
         params.put("password", base64ToString(password));
+        //固定参数
         params.put("yzm", "");
         params.put("isAjax", "true");
 
@@ -155,15 +182,93 @@ public class Main {
     /**
      * 发送验证码
      */
-    private void sendValidateCode()  {
-        String url="http://www.bjguahao.gov.cn/v/sendorder.htm";
-        String method="POST";
+    public void sendValidateCode() {
+        String url = "http://www.bjguahao.gov.cn/v/sendorder.htm";
+        String method = "POST";
         CloseableHttpResponse response = doHttp(method, url, null, null);
         try {
             String result = EntityUtils.toString(response.getEntity(), "UTF-8");
-            System.out.println("发送验证码返回结果："+result);
+            System.out.println("发送验证码返回结果：" + result);
+            System.out.println("请赶紧将验证码输入...");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 预约请求
+     *
+     * @param dutySourceId      出诊号
+     * @param hospitalId        医院id
+     * @param departmentId      科室id
+     * @param doctorId          医生id
+     * @param patientId         病人id
+     * @param hospitalCardId    就医卡号
+     * @param medicareCardId    医保卡号
+     * @param reimbursementType 报销类型
+     * @param smsVerifyCode     验证码
+     */
+    public void order(String dutySourceId, String hospitalId, String departmentId, String doctorId, String patientId, String hospitalCardId, String medicareCardId, String reimbursementType, String smsVerifyCode) {
+        String orderUrl = "http://www.bjguahao.gov.cn/order/confirmV1.htm";
+        String method = "POST";
+        HashMap<String, String> params = new HashMap<>();
+        params.put("dutySourceId", dutySourceId);
+        params.put("hospitalId", hospitalId);
+        params.put("departmentId", departmentId);
+        params.put("doctorId", doctorId);
+        params.put("patientId", patientId);
+        params.put("hospitalCardId", hospitalCardId);
+        params.put("medicareCardId", medicareCardId);
+        params.put("reimbursementType", reimbursementType);
+        params.put("smsVerifyCode", smsVerifyCode);
+        //固定参数
+        params.put("childrenBirthday", "");
+        params.put("dlRegType", "-1");
+        params.put("dlMajorId", "");
+        params.put("mapDoctorId", "");
+        CloseableHttpResponse response = doHttp(method, orderUrl, null, params);
+        try {
+            String result = EntityUtils.toString(response.getEntity(), "UTF-8");
+            JSONObject jsonObject = (JSONObject) JSONObject.parse(result);
+            Integer code = jsonObject.getInteger("code");
+            String orderId = jsonObject.getString("orderId");
+            if (code == 1) {
+                System.out.println("预约成功,订单号为:" + orderId + "，具体内容请查看手机短信提示");
+            } else {
+                System.out.println("预约失败：" + result);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 取消预约
+     *
+     * @param orderId 订单号
+     */
+    public void cancleOrder(String orderId) {
+        String url = "http://www.bjguahao.gov.cn/order/cel.htm";
+        String method = "post";
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("orderId", orderId);
+        params.put("hospitalType", "1");//todo:目前暂时全部填1
+        params.put("isAjax", "true");
+        CloseableHttpResponse response = doHttp(method, url, null, params);
+        String result = null;
+        try {
+            result = EntityUtils.toString(response.getEntity(), "UTF-8");
+            //{"code":200,"msg":"OK"}
+            JSONObject jsonObject = (JSONObject) JSONObject.parse(result);
+            Integer code = jsonObject.getInteger("code");
+            if (code == 200) {
+                System.out.println("取消预约成功！");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

@@ -1,0 +1,1100 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable = no"/>
+    <title>北京市预约挂号统一平台</title>
+    <script type="text/javascript">
+        if (typeof (GS) == "undefined" || !GS) {
+            var GS = {};
+        }
+        GS.Url = {
+            basePath: "/",
+            hs: "http://img.bjguahao.gov.cn/ws/1.0/hs/",
+            hps: "http://img.bjguahao.gov.cn/",
+            uploadUrl: "/u/upimg.htm",
+            uploadFileUrl: "/u/upimg.htm",
+            specializedHospitalUrl: "http://zmyygh.114menhu.com/"
+        };
+        var basePath = GS.Url.basePath, hs = GS.Url.hs, hps = GS.Url.hps;
+        var logined = true;</script>
+    <link rel="shortcut icon" href="http://img.bjguahao.gov.cn/ws/1.0/hs/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="http://img.bjguahao.gov.cn/ws/1.0/hs/css/style.css?v=3.0">
+    <link rel="stylesheet" type="text/css" href="http://img.bjguahao.gov.cn/ws/1.0/hs/css/rl_jquery.ui.css">
+    <link rel="stylesheet" type="text/css" href="http://img.bjguahao.gov.cn/ws/1.0/hs/css/rl_css.css">
+    <link rel="stylesheet" type="text/css" href="http://img.bjguahao.gov.cn/ws/1.0/hs/css/yidongduan.css"/>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/jquery.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/top.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/hospitalslist.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/loginpop.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/global.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/userattention.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/formater.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/validate_expand.js?v=1.0"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/validate3.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/gvalidate.js"></script>
+    <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/topdate.js"></script>
+    <script type="text/javascript" src="/hp/regex.htm"></script>
+</head>
+<body>
+<div id="dbnav">
+    <div class="dbnav_context"><p class="dbnav_context_left"><img
+            src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/dbnav.png"><span>010-114/116114电话预约</span></p>
+        <p class="grdbnav_context_right">欢迎您，赵志强<a href="/u/index.htm">个人中心</a><a href="/logout.htm">退出</a></p>
+        <div class="top_help"><p class="top_help_p"><a id="bdtj3" href="/help.htm" target="_blank">帮助中心</a></p>
+            <div class="top_help_h" style="display:none;"><a href="/help/reg.htm" target="_blank">注册指南</a><a
+                    href="/help/intro.htm" target="_blank">预约指南</a><a href="/help/retracc1.htm" target="_blank">账号申诉</a><a
+                    href="/help/common.htm" target="_blank">常见问题</a></div>
+        </div>
+    </div>
+</div>
+<div id="top">
+    <div class="top_left"><a href="/index.htm"><img src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/logo.jpg">
+        <h2 class="top_h2">北京市预约挂号统一平台</h2></a></div>
+    <div class="top_search">
+        <form method="get" name="search" action="/hp/search.htm" onsubmit="return checkwords();">
+            <div class="option" onclick="wValDisp('h','yyk');" id="wn_h_div"><span id="wn_h">医院</span></div>
+            <div class="sbox"><input onblur="javascript:if(this.value=='')this.value='请输入搜索内容';"
+                                     onfocus="javascript:if(this.value=='请输入搜索内容')this.value='';" value="请输入搜索内容"
+                                     maxlength=30 name="words" type="text" id="words"/></div>
+            <div class="sbtn"><input type="submit" value="" style="letter-spacing: -1px;"/></div>
+            <div id="sbArea_h" style="display:none;"><a target="_self" href="javascript:wValChg('ksk','h');">
+                <div class="dselObj" id="wv_h_2">科室</div>
+            </a><a target="_self" href="javascript:wValChg('jbk','h');">
+                <div class="dselObj" id="wv_h_4">疾病</div>
+            </a><a target="_self" href="javascript:wValChg('yyk','h');">
+                <div class="dselObj" id="wv_h_1">医院</div>
+            </a></div>
+        </form>
+    </div>
+</div>
+<div id="float-guangao" class="float-div"><a class="fixed-right-part"><span class="tab-icon tab-icon1"></span>
+    <div class="tab-text fixed-right-dowload-qr fixed-qr-box"><img
+            src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/index-right-appdown.png">
+        <p>扫码下载APP</p></div>
+</a><a class="fixed-right-part"><span class="tab-icon tab-icon2"></span>
+    <div class="tab-text fixed-right-wechat fixed-qr-box"><img
+            src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/index-right-gzh.png">
+        <p>关注微信公众号</p></div>
+</a><a class="fixed-right-part back-top back-top-active" id="back-top"><span class="tab-icon tab-icon3"></span><em
+        class="tab-text">返回顶部</em></a></div>
+<script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/base64.js?v=20181008"></script>
+<div id="djdl">
+    <div class="djdl_tab">
+        <div id="djdl_menui" class="djdl_menu">
+            <ul>
+                <li class="djdl_selected">快速登录</li>
+                <li>验证登录</li>
+            </ul>
+        </div>
+        <div id="djdl_tab_id" class="djdl_tab_box">
+            <form id="rg_nrfrom1" method="post" action="">
+                <div class="ksdl_ul">
+                    <div class="ysdl_tsyj"><p>温馨提示：已注册但未设置登录密码的用户须使用验证登录方式。</p></div>
+                    <div class="vre_err"><span id="qresultspan"></span></div>
+                    <dl class="djdl_ty_dl">
+                        <dt>手机号码：</dt>
+                        <dd><input id="mobileQuickLogin" name="smsQuick" type="text" class="register_input" maxlength=18
+                                   value="已注册手机号码"
+                                   onfocus="javascript:if(this.value=='已注册手机号码')this.value='',style.color='#000'; $('.hl_tsxx_yc').show()"
+                                   onblur="javascript:if(this.value=='')this.value='已注册手机号码',style.color='#ccc';"
+                                   style="color: #ccc;"><b class="tipinfo">*</b></dd>
+                    </dl>
+                    <dl class="djdl_ty_dl">
+                        <dt>登录密码：</dt>
+                        <dd><input type="password" name="passWordQuick" autocomplete="off" style="display:none"
+                                   id="pw"/><input id="pwQuickLogin" name="passWordQuick" type="passWord"
+                                                   autocomplete="off" class="register_input" maxlength=18><b
+                                class="tipinfo">*</b><b class="tipinfo"></b></dd>
+                    </dl>
+                    <dl id="quick_login_yzm_dl" class="djdl_ty_dl" style="display: none;">
+                        <dt>验证码：</dt>
+                        <dd>
+                            <div style="float:left;"><input id="yzmQuickLogin" name="yzmQuick" maxlength=4 type="text"
+                                                            class="register_inputa"><a
+                                    href="javascript:reloadImage($('#quick_login_yzmdl'));" class="sydl_yzmtp"><img
+                                    id="quick_login_yzmdl" src="" align="absmiddle" class="register_yzm"></a><a
+                                    href="javascript:reloadImage($('#quick_login_yzmdl'));" class="sydl_new_hyz"></a>
+                            </div>
+                            <span><b class="tipinfo">*</b></span></dd>
+                    </dl>
+                    <div class="tydiv"><input id="quick_login" name="submit" type="submit"
+                                              class="ksdl_ul_denglu djdl_nav_qr" value="登录"><a href="/reg.htm"
+                                                                                               class="ksdl_ul_register"
+                                                                                               target="_blank">注册新用户</a>
+                    </div>
+                    <a href="javascript:void(0);" class="ksdl_ul_wjmm" onclick="popDiv();">忘记密码?</a></div>
+            </form>
+            <form id="rg_nrfrom2" method="post" action="" class="djdl_hide">
+                <div class="ysdl_ul">
+                    <div class="ysdl_tsyj"><p>温馨提示：已注册并设置登录密码的用户须使用快速登录方式。</p></div>
+                    <div class="vre_err"><span id="vresultspan"></span></div>
+                    <dl class="djdl_ty_dl">
+                        <dt>用户姓名：</dt>
+                        <dd><input id="nameVerifyLogin" name="userName" type="text" class="register_input"
+                                   value="请填写已注册用户真实姓名"
+                                   onfocus="javascript:if(this.value=='请填写已注册用户真实姓名')this.value='',style.color='#000';"
+                                   onblur="javascript:if(this.value=='')this.value='请填写已注册用户真实姓名',style.color='#ccc';"
+                                   style="color:#ccc"><b class="tipinfo">*</b></dd>
+                    </dl>
+                    <dl class="djdl_ty_dl">
+                        <dt>证件号码：</dt>
+                        <dd><input id="zjhmVerifyLogin" name="isshefn" type="text" class="register_input" maxlength=20
+                                   value="与用户姓名对应的证件号码"
+                                   onfocus="javascript:if(this.value=='与用户姓名对应的证件号码')this.value='',style.color='#000';"
+                                   onblur="javascript:if(this.value=='')this.value='与用户姓名对应的证件号码',style.color='#ccc';"
+                                   style="color: #ccc;"><b class="tipinfo">*</b></dd>
+                    </dl>
+                    <dl class="djdl_ty_dl">
+                        <dt>手机号码：</dt>
+                        <dd><input id="mobileVerifyLogin" name="sms" type="text" class="register_input" maxlength=18
+                                   value="与证件号码绑定的手机号码"
+                                   onfocus="javascript:if(this.value=='与证件号码绑定的手机号码')this.value='',style.color='#000'; $('.hl_tsxx_yc').show()"
+                                   onblur="javascript:if(this.value=='')this.value='与证件号码绑定的手机号码',style.color='#ccc';"
+                                   style="color: #ccc;"><b class="tipinfo">*</b></dd>
+                    </dl>
+                    <dl class="djdl_ty_dl">
+                        <dt>验证码：</dt>
+                        <dd>
+                            <div style="float:left;"><input id="yzmVerifyLogin" name="code" maxlength=4 type="text"
+                                                            class="register_inputa"><a
+                                    href="javascript:reloadImage3($('#yzmdl'),'yzdl');" class="sydl_yzmtp"><img
+                                    id="yzmdl" src="" align="absmiddle" class="register_yzm"></a><a
+                                    href="javascript:reloadImage3($('#yzmdl'),'yzdl');" class="sydl_new_hyz"></a><input
+                                    name="channel" type="hidden" value="yzdl"></div>
+                            <b class="tipinfo">*</b></dd>
+                    </dl>
+                    <dl class="djdl_ty_dl">
+                        <dt>手机验证码：</dt>
+                        <dd><input id="sjyzmVerifyLogin" name="smsCode"
+                                   onkeyup="this.value=this.value.replace(/\D/g,'')"
+                                   onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength=6 type="text"
+                                   class="register_inputa"><input id="btnSendCodeVLogin" name="yt0" class="msjyz_dj"
+                                                                  type="button" value="获取验证码"><b class="tipinfo">*</b>
+                        </dd>
+                    </dl>
+                    <div class="tydiv"><input id="verify_login" name="submit" type="submit"
+                                              class="ysdl_ul_denglu djdl_nav_qr" value="登录"><a href="/reg.htm"
+                                                                                               class="ysdl_ul_register"
+                                                                                               target="_blank">注册新用户</a>
+                    </div>
+                </div>
+                <input name="smsType" type="hidden" value="2"/><input id="loginLocation" name="loginLocation"
+                                                                      type="hidden" value="1"/>
+                <div class="hl_tsxx_yc">
+                    手机号码帮助：1.若您注册时没有绑定手机号码或您在114坐席系统预留的是座机号码，请填写您现有的手机号码与您的注册身份信息进行绑定。2.若您填写的手机号码与初始注册时绑定的手机号码不一致，请通过<a
+                        href="/help/retracc1.htm">账号申诉</a>修改绑定手机号。3.若您填写的手机号已被其他用户绑定，请输入其他有效手机号进行验证登录。
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="djdl_close"><a></a></div>
+</div>
+<div id="djdl_fpassword" class="djdl_fpassword" style="display: none;">
+    <form id="rg_nrfrom6" method="post" action=""><h3 class="djdl_fpassword_h3">密码找回</h3>
+        <div class="djdl_fpassword_content">
+            <div class="vre_err"><span id="fpresultspan"></span></div>
+            <dl class="djdl_ty_dl">
+                <dt>证件号码：</dt>
+                <dd><input id="djdl_fp_zjhm" name="isshefn" type="text" class="register_input"><b class="tipinfo"></b>
+                </dd>
+            </dl>
+            <dl class="djdl_ty_dl">
+                <dt>验证码：</dt>
+                <dd><input id="djdl_fp_yzm" name="code" maxlength="4" type="text" class="register_inputa"><a
+                        href="javascript:reloadImage3($('#djdl_fp_yzmdl'),'zhmm');" class="sydl_yzmtp"><img
+                        id="djdl_fp_yzmdl" src="" align="absmiddle" class="djdl_fp_yzm"></a><a
+                        href="javascript:reloadImage3($('#djdl_fp_yzmdl'),'zhmm');" class="sydl_new_hyz"></a><input
+                        name="channel" type="hidden" value="zhmm"></dd>
+            </dl>
+            <dl class="djdl_ty_dl">
+                <dt>手机号码：</dt>
+                <dd><input id="djdl_fp_sfzhm" name="sms" type="text" class="register_input"><b class="tipinfo"></b></dd>
+            </dl>
+            <dl class="djdl_ty_dl">
+                <dt>手机验证码：</dt>
+                <dd><input id="djdl_fp_sjyz" name="smsCode" type="text" class="register_inputa"><input
+                        id="btnSendCodeFPW" name="yt0" class="djdl_fpjyz_dj" type="button" value="获取验证码"></dd>
+            </dl>
+            <input name="smsType" value="8" type="hidden"/><input id="djdl_fp_qr2" name="button" type="button"
+                                                                  class="djdl_fp_qr2" value="确认" onclick="checkForm();"><input
+                name="submit" type="submit" class="djdl_fp_qr1" value="返回"><br></div>
+    </form>
+    <div id="djdl_fp_close"><a></a></div>
+</div>
+<div id="djdl_fpsu" class="djdl_fpsu">
+    <form id="rg_nrfrom7" method="post" action=""><h3 class="djdl_fpsu_h3">密码找回</h3>
+        <p class="djdl_twop_tsxp">请您输入您的新密码并确认</p>
+        <div class="djdl_fpsu_success">
+            <div class="vre_err"><span id="fp2resultspan"></span></div>
+            <dl class="djdl_ty_dl">
+                <dt>设置密码：</dt>
+                <dd><input id="passWordfp" name="passWord" type="password" autocomplete="off" class="register_input"><b
+                        class="tipinfo"></b></dd>
+            </dl>
+            <dl class="djdl_ty_dl">
+                <dt>确认密码：</dt>
+                <dd><input type="password" name="passWordAgain" autocomplete="off" style="display:none" id="pw2"/><input
+                        id="passWordAgainfp" name="passWordAgain" type="password" autocomplete="off"
+                        class="register_input"><b class="tipinfo"></b></dd>
+            </dl>
+            <input name="submit" type="button" class="djdl_fpsu_qr2" value="确认修改" onclick="submitModifyPass();"></div>
+    </form>
+    <div id="djdl_fpsu_close" class="tang_close" style="z-index:9999;"><a></a></div>
+</div>
+<div class="djdl_fpsuts" id="djdl_fpsuts_success"><h3 class="djdl_fpsuts_h3">密码找回</h3>
+    <div class="djdl_fpsuts_success"><p>恭喜您密码修改成功</p><a href="/logout.htm" class="djdl_fpsuts_jxdl">继续登录</a></div>
+    <div id="djdl_fpsuts_close" class="tang_close3"><a></a></div>
+</div>
+<div id="djdl_fpfalse" class="djdl_fpfalse"><h3 class="djdl_fpfalse_h3">密码找回</h3>
+    <div class="djdl_fpfalse_success"><p> 您的手机验证码输入错误，如果您的绑定手机号码有误<br>请点击“账号申诉”。 </p><a
+            href="javascript:$('#djdl_fpfalse').hide();popDiv();" class="djdl_fpfalse_callback">返回</a><a
+            href="/help/retracc2.htm" class="djdl_fpfalse_zhzh">账号申诉</a></div>
+    <div id="djdl_fpfalse_close"><a href="javascript:void(0)" class="tang_close_ZH"></a></div>
+</div>
+<div id="djdl_twoperson" class="djdl_twoperson" style="display:none"></div>
+<div id="djdl_twoperson5" class="djdl_twoperson5"><h3 class="djdl_twoperson_h3">用户登录</h3>
+    <div class="djdl_tw_success"><p id="setsus">密码设置成功，欢迎您来到北京市预约挂号统一平台</p><a id="djdl_twop_qr"
+                                                                              class="djdl_twop_qr tang_close2">确认</a>
+    </div>
+    <div id="djdl_twoperson5_close" class="tang_close2"><a></a></div>
+</div>
+<div id="denglucg">
+    <iframe style="position:absolute;width:100%;height:100%;_filter:alpha(opacity=0);opacity:0;border-style:none;z-index:-1;border:0"></iframe>
+    <div class="denglucg_tp"><img src="http://img.bjguahao.gov.cn/ws/1.0/hs//images/denglucheng.jpg">
+        <p>登录成功</p></div>
+</div>
+<div class="djdl_twoperson6">
+    <form id="rg_nrfrom10" method="post" action=""><h3 class="djdl_twoperson_h3">用户登录</h3>
+        <div class="djdl_twoperson_content"><p class="djdl_twop_tsxx4">您好，使用非身份证号注册的用户需要补全性别及年龄信息</p>
+            <div class="vre_err"><span id="vresultspan3"><p class="error" generated="true"
+                                                            for="setpassword">请您选择出生日期</p></span></div>
+            <dl class="djdl_ty_dl">
+                <dt>用户：</dt>
+                <dd>张先生 军官证 H123456</dd>
+            </dl>
+            <dl class="djdl_ty_dl">
+                <dt>性别：</dt>
+                <dd><a href="1" class="rg_nr_boy rg_nr_acolor">男</a><a href="2" class="rg_nr_girl">女</a><b
+                        class="tipinfo"></b></dd>
+            </dl>
+            <dl class="djdl_ty_dl">
+                <dt>出生日期：</dt>
+                <dd><select id="sel_year2" class="zj_select" style="color:#ccc"
+                            onChange="var index = $(this).children('option:selected').index();this.style.color=(index==0?'#ccc':'black')"></select><select
+                        id="sel_month2" class="zj_select" style="color:#ccc"
+                        onChange="var index = $(this).children('option:selected').index();this.style.color=(index==0?'#ccc':'black')"></select><select
+                        id="sel_day2" class="zj_select" style="color:#ccc"
+                        onChange="var index = $(this).children('option:selected').index();this.style.color=(index==0?'#ccc':'black')"></select><b
+                        class="tipinfo"></b></dd>
+            </dl>
+            <input name="submit" type="submit" class="djdl_twop_qr1" value="确认"></div>
+        <script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/birthday2.js"></script>
+    </form>
+    <div id="djdl_twoperson_close"><a href="#"></a></div>
+</div>
+<div class="use_shimingrenz" id="use_smrztc2">
+    <div class="use_smrztc_sb2"><p>实名认证中<b class="divTime"></b></p></div>
+</div>
+<script>
+    /*点击登录的弹窗*/
+    $(document).ready(function () {
+        $(".db_denglu").click(function () {
+            popCenterWindow("#djdl", ".ksdl_ul_denglu", "#djdl_close");
+            reloadImage3($('#yzmdl'), 'yzdl');
+        });
+    });
+
+    var windowHeight;
+
+    var windowWidth;
+
+    var popWidth;
+
+    var popHeight;
+
+    function init(odiv) {
+        windowHeight = $(window).height();
+        windowWidth = $(window).width();
+        popHeight = $(odiv).outerHeight();
+        popWidth = $(odiv).outerWidth();
+    }
+
+    function popCenterWindow(odiv, clos, clos2) {
+        init(odiv);
+
+        var popY = (windowHeight - popHeight) / 2;
+        var popX = (windowWidth - popWidth) / 2;
+
+        $(odiv).css("top", popY + $(window).scrollTop()).css("left", popX)
+            .show();
+        $("#bg").css({
+            display: "block",
+            height: $(document).height()
+        });
+
+        $(window).on('resize scroll', function () {
+            $(odiv).css("top", popY + $(window).scrollTop()).css("left", popX);
+        });
+    }
+
+    function popCenterWindow2(odiv2) {
+        init(odiv2);
+
+        var popY = (windowHeight - popHeight) / 2;
+        var popX = (windowWidth - popWidth) / 2;
+
+        $(odiv2).css("top", popY + $(window).scrollTop()).css("left", popX)
+            .show(200).delay(2000).hide(100);
+
+        $(window).on(
+            'resize scroll',
+            function () {
+                $(odiv2).css("top", popY + $(window).scrollTop()).css(
+                    "left", popX);
+            });
+    }
+
+    var btnCloseTang = $("#djdl_close > a");
+    /* var btn = document.getElementById("djdl_close");
+    btn.onclick = function() {
+        var div = $("#djdl");
+        div.css({
+            "display" : "none"
+        });
+        $("#bg").css("display", "none");
+    } */
+    $("#djdl_close").click(function () {
+        $("#djdl").css({
+            "display": "none"
+        });
+        $("#bg").css("display", "none");
+    });
+
+    /* var btnCloseMMZH = $("#djdl_fp_close > a");
+    var btnCl = document.getElementById("djdl_fp_close");
+    btnCl.onclick=function(){
+        var divs = $("#djdl_fpassword");
+        divs.css({"display":"none"});
+        $("#bg").css("display", "none");
+    }; */
+
+    $("#djdl_fp_close").click(function () {
+        $("#djdl_fpassword").css({
+            "display": "none"
+        });
+        $("#bg").css({
+            "display": "none"
+        });
+    });
+
+    $(".tang_close").click(function () {
+        $("#djdl_fpsu").css({
+            "display": "none"
+        });
+        $("#bg").css({
+            "display": "none"
+        });
+    });
+
+    $(".tang_close2").click(function () {
+        $("#djdl_twoperson5").css({
+            "display": "none"
+        });
+        $("#bg").css({
+            "display": "none"
+        });
+    });
+    $(".tang_close3").click(function () {
+        $("#djdl_fpsuts_success").css({
+            "display": "none"
+        });
+        $("#bg").css({
+            "display": "none"
+        });
+    });
+
+    $(".tang_close_ZH").click(function () {
+        $("#djdl_fpfalse").css({
+            "display": "none"
+        });
+        $("#bg").css({
+            "display": "none"
+        });
+    });
+
+    $(function () {
+        $.ms_DatePicker({
+            YearSelector: ".sel_year",
+            MonthSelector: ".sel_month",
+            DaySelector: ".sel_day"
+        });
+        $.ms_DatePicker();
+    });
+</script>
+<div id="nav">
+    <div id="nav_box">
+        <ul class="nav_ul">
+            <li><a href="/index.htm">首页</a></li>
+            <li><a href="/hp.htm">按医院挂号</a></li>
+            <li><a href="/dpt.htm">按科室挂号</a></li>
+            <li><a href="/dis.htm">按疾病挂号</a></li>
+            <li><a href="/ann.htm">最新公告</a></li>
+        </ul>
+    </div>
+</div>
+<style>
+    #resultOrder {
+        color: red;
+    }
+</style>
+<div id="yuyueguahao_top">
+    <div class="yuyueguahao_div">
+        <ul class="yuyueguahao_ul">
+            <li><a href="/hp/appoint/1/142.htm" class="xzbs_color">预约挂号</a></li>
+            <li><a href="/hp/info/1/142.htm">医院介绍</a></li>
+            <li><a href="/hp/notice/1/142.htm">预约须知</a></li>
+            <li><a href="/hp/stopInfo/1/142,1.htm">停诊信息</a></li>
+        </ul>
+        <span class="yygh_liright"><a href="/hp.htm">选择其他医院</a></span></div>
+</div>
+<div id="Reservation_info">
+    <div class="Rese_info_top">
+        <dl class="Rese_info_top_dl">
+            <dt><img src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/qrxx.jpg"></dt>
+            <dd><p>预约规则 ( <span>可预约班次更新时间每日07:00更新 </span>) </p>
+                <dl class="Rese_info_top_dl2">
+                    <dt>预约周期：</dt>
+                    <dd>7
+                        <script type="text/javascript">
+                            document.write(fmt.formatFHPeriodUnit('1'));
+                        </script>
+                    </dd>
+                </dl>
+                <dl class="Rese_info_top_dl2">
+                    <dt>停挂时间：</dt>
+                    <dd>12:00:00</dd>
+                </dl>
+                <dl class="Rese_info_top_dl2">
+                    <dt>退号时间：</dt>
+                    <dd>就诊前一工作日12:00前取消</dd>
+                </dl>
+                <dl class="Rese_info_top_dl2">
+                    <dt>特殊规则：</dt>
+                    <dd class="Rese_info_tsgz"><p><br/>①&nbsp; 无就医卡的患者取号前须先到我院门诊发卡中心办理我院就医卡，医保患者须在办卡的同时提供社保卡进行关联；<br/>②&nbsp;
+                        目前【生殖医学中心】只预约女性患者；【男科】只预约男性患者；<br/>③&nbsp;
+                        我院的预约取号地点有多个，请按照预约成功短信提示或者预约须知里注明的地点取号就诊；周末本部号源取号地点为门诊楼一层。</p>
+                        <p>④ 16周岁以下患者(含16周岁)只能预约口腔科门诊-正畸专业及儿科门诊、耳鼻喉科门诊、眼科门诊、成形科门诊、皮肤科门诊相关专业号源；</p>
+                        <p><br/></p>
+                        <p><br/></p>
+                        <p><br/></p>
+                        <p><br/></p></dd>
+                </dl>
+            </dd>
+        </dl>
+        <div class="Rese_info_top_div">
+            <ul class="Rese_info_top_ul">
+                <li><span>科室：</span>&nbsp;北京大学第三医院-职业病门诊</li>
+                <li><span>医生：</span> 普通门诊</li>
+            </ul>
+            <ul class="Rese_info_top_ur">
+                <li><span>时间：</span> 2019-01-15&nbsp;
+                    <script type="text/javascript">
+                        document.write(fmt.formatDutyCode('2'));
+                    </script>
+                </li>
+                <li><span>医事服务费：</span><b>
+                    <script type="text/javascript">
+                        document.write(fmt.formatMoney("50.0", 2));
+                    </script>
+                </b></li>
+            </ul>
+        </div>
+    </div>
+    <div class="Rese_db"><p class="Rese_db_p">请您填写相关信息完成预约：</p>
+        <dl class="Rese_db_dl">
+            <dt>就 诊 人：</dt>
+            <dd><p><input type="radio" name="hzr" value="230962426" checked="checked"> 赵志强 | 410611199207017512</p>
+                <p><input type="radio" name="hzr" value="235413670"> 邢倩倩 | 410621199209224569</p><input id="p_size"
+                                                                                                        type="hidden"
+                                                                                                        value="2"><a
+                        class="Rese_db_add" href="javascript:void(0);" onclick="addPatient();">+ 添加就诊人</a>
+                <script type="text/javascript">
+                    function addPatient() {
+                        var psize = $("#p_size").val();
+                        if (psize >= 4) {
+                            alert("就诊人最多可添加3个！");
+                            return false;
+                        }
+                        window.location.href = basePath + "p/add.htm";
+                    }
+                </script>
+            </dd>
+        </dl>
+    </div>
+    <dl class="Rese_db_dl">
+        <dt>就 诊 卡：</dt>
+        <dd><input type="text" class="Rese_db_dl_inp" id="Rese_db_dl_jzk"></dd>
+    </dl>
+    <dl class="Rese_db_dl">
+        <dt>医 保 卡：</dt>
+        <dd><input type="text" class="Rese_db_dl_inp" id="Rese_db_dl_ybk"></dd>
+    </dl>
+    <dl class="Rese_db_dl">
+        <dt>报 销 类 型：</dt>
+        <dd><select class="Rese_db_dl_select" id="Rese_db_dl_idselect" item_flag="1">
+            <option value="-1">==请选择==</option>
+            <option value="1">医疗保险</option>
+            <option value="2">商业保险</option>
+            <option value="3">公费医疗</option>
+            <option value="4">新农合</option>
+            <option value="5">异地医保</option>
+            <option value="6">红本医疗</option>
+            <option value="7">工伤</option>
+            <option value="8">一老一小</option>
+            <option value="9">超转</option>
+            <option value="10">自费</option>
+            <option value="11">生育险</option>
+            <option value="12">其他</option>
+        </select></dd>
+    </dl>
+    <dl class="Rese_db_dl">
+        <dt>手机验证码：</dt>
+        <dd>
+            <div><input id="Rese_db_dl_dxyzid" type="text" class="Rese_db_dl_dxyz" item_flag="4"><input
+                    id="btnSendCodeOrder" class="Rese_db_dl_sjyzdjfs" type="button" name="hqyzm" value="获取验证码"></div>
+            <span class="Rese_db_dl_span">*</span><span id="yzm_span" class="Rese_db_dl_yzxs" style="display: none;">请输入手机验证码</span>
+        </dd>
+    </dl>
+    <p class="Rese_db_tixx"> 提示：<span class="Rese_db_dl_btspan">*</span>为必填项 </p>
+    <p class="Rese_db_tixx" id="resultOrder"></p><a class="Rese_db_qryy" href="javascript:void(0)"
+                                                    id="Rese_db_qryy_btn_v1">预约</a><a class="Rese_db_callback"
+                                                                                      href="javascript:void(0);"
+                                                                                      onClick="javascript:history.go(-1);">返回</a>
+</div>
+</div>
+<div id="Rese_jztc">
+    <iframe style="position:absolute;width:100%;height:100%;_filter:alpha(opacity=0);opacity:0;border-style:none;"></iframe>
+    <h4>排队中</h4>
+    <p>请您等待(1).......</p></div>
+<div id="Rese_yytj" style="display:none"><h4>预约成功</h4>
+    <div class="Rese_yytj_yuyue">
+        <iframe style="position:absolute;width:100%;height:100%;_filter:alpha(opacity=0);opacity:0;border-style:none;z-index:-1"></iframe>
+        <p class="Rese_yytj_p" id="Rese_yytj_p">您已成功预约......</p>
+        <dl>
+            <dt>姓　　　名：</dt>
+            <dd></dd>
+        </dl>
+        <dl>
+            <dt>证 件 类 型：</dt>
+            <dd></dd>
+        </dl>
+        <dl>
+            <dt>证　件　号：</dt>
+            <dd></dd>
+        </dl>
+        <dl>
+            <dt>预约识别码：</dt>
+            <dd></dd>
+        </dl>
+        <dl>
+            <dt>就 诊 日 期：</dt>
+            <dd></dd>
+        </dl>
+        <dl>
+            <dt>取 号 时 间：</dt>
+            <dd></dd>
+        </dl>
+        <dl>
+            <dt>取 号 地 点：</dt>
+            <dd></dd>
+        </dl>
+        <div class="kscor_wxts"><span class="kscor_wxts_img"><img
+                src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/succered-ewm.png"></span>
+            <p class="kscor_wxts_p"><span class="yycg_wxts">温馨提示:</span>“114健康”APP预约实时查询，手机、电话挂号更便捷，更多健康资讯与服务每周速递。<span
+                    class="yycg_ljgz">扫一扫左侧二维码，立即下载</span></p></div>
+        <a class="Rese_yytj_index" href="/index.htm">返回首页</a><a class="Rese_yytj_grzx" href="/u/index.htm">个人中心</a>
+    </div>
+</div>
+<input type="hidden" id="dutySourceId" value="59950454"/><input type="hidden" id="departmentId"
+                                                                value="200039606"/><input type="hidden" id="hospitalId"
+                                                                                          value="142"/><input
+        type="hidden" id="doctorId" value="201151532"/>
+<form id="line-up" method="post" hidden="hidden"></form>
+<form id="order-result" method="post" hidden="hidden"></form>
+<script type="text/javascript">
+    $(function () {
+        function B() {
+            $(this).siblings(".Rese_db_dl_yzxs").css("display", "none");
+            $(this).parent().siblings(".Rese_db_dl_yzxs").css("display", "none")
+        }
+
+        sendSmsCodeBtn({
+            GLVar: "btnSendCodeOrder",
+            btnId: "#btnSendCodeOrder",
+            formId: "#rg_nrfromOrder",
+            url: basePath + "v/sendorder.htm",
+            valid: function () {
+                return !0
+            },
+            ok: function () {
+                alert(prompts.sms_code_send_ok)
+            },
+            notok: function (i) {
+                alert(i.msg)
+            },
+            error: function () {
+                alert(prompts.sms_code_send_failed)
+            }
+        });
+        $("input").each(function () {
+            var i = "#" + $(this).attr("id");
+            $(i).focus({tipTag: i},
+                B)
+        });
+        $("select").each(function () {
+            var i = "#" + $(this).attr("id");
+            $(i).focus({tipTag: i}, B)
+        });
+        var t = !0;
+        $("#Rese_db_qryy_btn").click(function () {
+            if (t) {
+                var i = $("#isFirstTime").val(), u = $("#hasDLJiuZhenKa").val(), p = $("#childGender").val(),
+                    g = $("#childCardType").val(), k = $("input[name='hzr']:checked").val();
+                if (typeof k == "undefined" || k == null || k == "") alert("\u8bf7\u9009\u62e9\u5c31\u8bca\u4eba!"); else {
+                    var v = $("#Rese_db_dl_bah").val(), f = $("#Rese_db_dl_jzk").val(), w = $("#Rese_db_dl_jyt").val(),
+                        q = $("#hospitalId").val();
+                    if (q == 17) {
+                        var j = RegExp(/^(T[0-9]{9}|[0-9]{10})$/);
+                        if (typeof f != "undefined" && f != "" && !j.test(f.trim())) {
+                            alert("\u5c31\u8bca\u5361\u53f7\u683c\u5f0f\u4e0d\u6b63\u786e\uff01");
+                            return
+                        }
+                    } else if (j = /^[A-Za-z0-9]+$/, typeof f != "undefined" && f != "" && !j.test(f.trim())) {
+                        alert("\u5c31\u8bca\u5361\u53f7\u53ea\u80fd\u8f93\u5165\u5b57\u6bcd\u548c\u6570\u5b57!");
+                        return
+                    }
+                    var j = $("#Rese_db_dl_ybk").val(), x = $("#Rese_db_dl_idselect").val(),
+                        r = $("#Rese_db_dl_dxyzid").val(), y = $("#dutySourceId").val(), z = $("#departmentId").val(),
+                        A = $("#doctorId").val(), l = $("#Rese_db_dl_qsxm").val(), m = $("#Rese_db_dl_hrxm_ek").val(),
+                        n = $("#Rese_db_dl_hrzjh_ek").val(), c = $("#Rese_db_dl_hrsf_ek").val(), d, e;
+                    if (g == 1 && c != null) d = IdCard(c, 1), e = IdCard(c, 2); else {
+                        d = $("#sel_year").val();
+                        e = $("#sel_month").val();
+                        var h = $("#sel_day").val();
+                        d = d == null || d == "" || d == void 0 || e == null || e == "" || e == void 0 || h == null || h == "" || h == void 0 ? "" : d + "-" + e + "-" + h;
+                        e = p
+                    }
+                    var b = !0, s, o = $("#childCardType").val() == 2 ? !0 : !1;
+                    q == 34 && (o = !0, g = 2);
+                    $("[item_flag=4]").each(function () {
+                        $(this).attr("id") ==
+                        "Rese_db_dl_qsxm" && (l == null || l == "" ? ($("#kinshipName_span").html("\u4eb2\u5c5e\u59d3\u540d\u4e0d\u80fd\u4e3a\u7a7a"), $("#kinshipName_span").css("display", "block"), b = !1) : Gvali.reg.isTrueName.test(l) || ($("#kinshipName_span").html("\u8bf7\u8f93\u5165\u4eb2\u5c5e\u771f\u5b9e\u59d3\u540d"), $("#kinshipName_span").css("display", "block"), b = !1));
+                        $(this).attr("id") == "Rese_db_dl_hrxm_ek" && (m == null || m == "" ? ($("#childrenName_span").html("\u60a3\u513f\u59d3\u540d\u4e0d\u80fd\u4e3a\u7a7a"), $("#childrenName_span").css("display",
+                            "block"), b = !1) : Gvali.reg.isTrueName.test(m) || ($("#childrenName_span").html("\u8bf7\u8f93\u5165\u60a3\u513f\u771f\u5b9e\u59d3\u540d"), $("#childrenName_span").css("display", "block"), b = !1));
+                        g == 1 && c != null ? $(this).attr("id") == "Rese_db_dl_hrsf_ek" && (c == null || c == "" ? ($("#childrenIdNo_span1").html("\u60a3\u513f\u8eab\u4efd\u8bc1\u53f7\u4e0d\u80fd\u4e3a\u7a7a"), $("#childrenIdNo_span1").css("display", "block"), b = !1) : Gvali.isIdCard(c) || ($("#childrenIdNo_span1").html("\u8eab\u4efd\u8bc1\u53f7\u683c\u5f0f\u4e0d\u6b63\u786e"),
+                            $("#childrenIdNo_span1").css("display", "block"), b = !1), s = c, o = !1) : g == 2 && $(this).attr("id") == "Rese_db_dl_hrzjh_ek" && (n == null || n == "" ? ($("#childrenIdNo_span2").html("\u60a3\u513f\u8bc1\u4ef6\u53f7\u4e0d\u80fd\u4e3a\u7a7a"), $("#childrenIdNo_span2").css("display", "block"), b = !1) : n.length <= 2 && ($("#childrenIdNo_span2").html("\u8bc1\u4ef6\u53f7\u957f\u5ea6\u5927\u4e8e2\u4f4d"), $("#childrenIdNo_span2").css("display", "block"), b = !1), s = n, o = !0);
+                        if (($("#sel_year").val() <= 0 || $("#sel_month").val() <= 0 || $("#sel_day").val() <=
+                            0) && o) {
+                            $("#sel_year");
+                            var a = $("#sel_year").parent().siblings(".Rese_db_dl_yzxs");
+                            $(a).css("display", "block");
+                            b = !1
+                        }
+                        g == "2" && (p == "" || p == 0 ? ($("#hexb_span").css("display", "block"), b = !1) : $("#hexb_span").css("display", "none"));
+                        if ($(this).attr("id") == "Rese_db_dl_dxyzid" && (r == null || r == "")) $("#yzm_span").css("display", "block"), b = !1
+                    });
+                    if (b == !1) return !1;
+                    $.ajax({
+                        type: "post", url: basePath + "order/confirm.htm", data: {
+                            dutySourceId: y,
+                            hospitalId: q,
+                            departmentId: z,
+                            doctorId: A,
+                            patientId: k,
+                            medicalRecordId: v,
+                            hospitalCardId: f,
+                            jytCardId: w,
+                            medicareCardId: j,
+                            reimbursementType: x,
+                            smsVerifyCode: r,
+                            kinshipName: l,
+                            isFirstTime: i,
+                            hasPowerHospitalCard: u,
+                            childrenName: m,
+                            cidType: g,
+                            childrenIdNo: s,
+                            childrenBirthday: d,
+                            childrenGender: e,
+                            isAjax: !0
+                        }, dataType: "json", beforeSend: function () {
+                            $("#Rese_db_qryy_btn").attr("disabled", "disabled");
+                            t = !1
+                        }, complete: function () {
+                            $("#Rese_db_qryy_btn").removeAttr("disabled");
+                            t = !0
+                        }, success: function (a) {
+                            if (a.hasError) alert(a.msg); else {
+                                $("#Rese_yytj").css("display", "block");
+                                $("#Rese_yytj_p").html("\u60a8\u5df2\u6210\u529f\u9884\u7ea6" +
+                                    a.data[0].hospitalName + " " + a.data[0].departmentName);
+                                $("#Rese_yytj dd").eq(0).html(a.data[0].patientName);
+                                var b = a.data[0].idTypeName;
+                                $("#Rese_yytj dd").eq(1).html(b);
+                                $("#Rese_yytj dd").eq(2).html(a.data[0].patientIdNo);
+                                $("#Rese_yytj dd").eq(3).html(a.data[0].recognitionCode);
+                                b = a.data[0].ampm;
+                                $("#Rese_yytj dd").eq(4).html(a.data[0].dutyDate + b);
+                                $("#Rese_yytj dd").eq(5).html(a.data[0].offerTime);
+                                $("#Rese_yytj dd").eq(6).html(a.data[0].offerAddress);
+                                a.data[0].needNs && a.data[0].numericalSequence != null &&
+                                a.data[0].numericalSequence != "" && $("#Rese_yytj dl").eq(6).after("<dl><dt>\u987a\u3000\u5e8f\u3000\u53f7\uff1a</dt><dd>" + a.data[0].numericalSequence + "</dd></dl>");
+                                a.data[0].needTs && a.data[0].temporalSequence != null && a.data[0].temporalSequence != "" && $(".kscor_wxts").before("<dl><dt>\u5019 \u8bca \u65f6 \u6bb5\uff1a</dt><dd>" + a.data[0].temporalSequence + "</dd></dl>")
+                            }
+                        }
+                    })
+                }
+            } else alert("\u8bf7\u52ff\u91cd\u590d\u63d0\u4ea4\uff01")
+        });
+        $("#Rese_db_qryy_btn_v1").click(function () {
+            if (t) {
+                var i = $("#isFirstTime").val(),
+                    u = $("#hasDLJiuZhenKa").val(), p = $("#childGender").val(), g = $("#childCardType").val(),
+                    k = $("input[name='hzr']:checked").val();
+                if (typeof k == "undefined" || k == null || k == "") alert("\u8bf7\u9009\u62e9\u5c31\u8bca\u4eba!"); else {
+                    var v = $("#Rese_db_dl_bah").val(), f = $("#Rese_db_dl_jzk").val(), w = $("#Rese_db_dl_jyt").val(),
+                        q = $("#hospitalId").val();
+                    if (q == 17) {
+                        var j = RegExp(/^(T[0-9]{9}|[0-9]{10})$/);
+                        if (typeof f != "undefined" && f != "" && !j.test(f.trim())) {
+                            alert("\u5c31\u8bca\u5361\u53f7\u683c\u5f0f\u4e0d\u6b63\u786e\uff01");
+                            return
+                        }
+                    } else if (j = /^[A-Za-z0-9]+$/, typeof f != "undefined" && f != "" && !j.test(f.trim())) {
+                        alert("\u5c31\u8bca\u5361\u53f7\u53ea\u80fd\u8f93\u5165\u5b57\u6bcd\u548c\u6570\u5b57!");
+                        return
+                    }
+                    var j = $("#Rese_db_dl_ybk").val(), x = $("#Rese_db_dl_idselect").val(),
+                        r = $("#Rese_db_dl_dxyzid").val(), y = $("#dutySourceId").val(), z = $("#departmentId").val(),
+                        A = $("#doctorId").val(), l = $("#Rese_db_dl_qsxm").val(), m = $("#Rese_db_dl_hrxm_ek").val(),
+                        n = $("#Rese_db_dl_hrzjh_ek").val(), c = $("#Rese_db_dl_hrsf_ek").val(), d, e;
+                    if (g == 1 && c !=
+                        null) d = IdCard(c, 1), e = IdCard(c, 2); else {
+                        d = $("#sel_year").val();
+                        e = $("#sel_month").val();
+                        var h = $("#sel_day").val();
+                        d = d == null || d == "" || d == void 0 || e == null || e == "" || e == void 0 || h == null || h == "" || h == void 0 ? "" : d + "-" + e + "-" + h;
+                        e = p
+                    }
+                    var b = !0, s, o = $("#childCardType").val() == 2 ? !0 : !1;
+                    q == 34 && (o = !0, g = 2);
+                    $("[item_flag=4]").each(function () {
+                        $(this).attr("id") == "Rese_db_dl_qsxm" && (l == null || l == "" ? ($("#kinshipName_span").html("\u4eb2\u5c5e\u59d3\u540d\u4e0d\u80fd\u4e3a\u7a7a"), $("#kinshipName_span").css("display", "block"), b = !1) :
+                            Gvali.reg.isTrueName.test(l) || ($("#kinshipName_span").html("\u8bf7\u8f93\u5165\u4eb2\u5c5e\u771f\u5b9e\u59d3\u540d"), $("#kinshipName_span").css("display", "block"), b = !1));
+                        $(this).attr("id") == "Rese_db_dl_hrxm_ek" && (m == null || m == "" ? ($("#childrenName_span").html("\u60a3\u513f\u59d3\u540d\u4e0d\u80fd\u4e3a\u7a7a"), $("#childrenName_span").css("display", "block"), b = !1) : Gvali.reg.isTrueName.test(m) || ($("#childrenName_span").html("\u8bf7\u8f93\u5165\u60a3\u513f\u771f\u5b9e\u59d3\u540d"), $("#childrenName_span").css("display",
+                            "block"), b = !1));
+                        g == 1 && c != null ? $(this).attr("id") == "Rese_db_dl_hrsf_ek" && (c == null || c == "" ? ($("#childrenIdNo_span1").html("\u60a3\u513f\u8eab\u4efd\u8bc1\u53f7\u4e0d\u80fd\u4e3a\u7a7a"), $("#childrenIdNo_span1").css("display", "block"), b = !1) : Gvali.isIdCard(c) || ($("#childrenIdNo_span1").html("\u8eab\u4efd\u8bc1\u53f7\u683c\u5f0f\u4e0d\u6b63\u786e"), $("#childrenIdNo_span1").css("display", "block"), b = !1), s = c, o = !1) : g == 2 && $(this).attr("id") == "Rese_db_dl_hrzjh_ek" && (n == null || n == "" ? ($("#childrenIdNo_span2").html("\u60a3\u513f\u8bc1\u4ef6\u53f7\u4e0d\u80fd\u4e3a\u7a7a"),
+                            $("#childrenIdNo_span2").css("display", "block"), b = !1) : n.length <= 2 && ($("#childrenIdNo_span2").html("\u8bc1\u4ef6\u53f7\u957f\u5ea6\u5927\u4e8e2\u4f4d"), $("#childrenIdNo_span2").css("display", "block"), b = !1), s = n, o = !0);
+                        if (($("#sel_year").val() <= 0 || $("#sel_month").val() <= 0 || $("#sel_day").val() <= 0) && o) {
+                            $("#sel_year");
+                            var a = $("#sel_year").parent().siblings(".Rese_db_dl_yzxs");
+                            $(a).css("display", "block");
+                            b = !1
+                        }
+                        g == "2" && (p == "" || p == 0 ? ($("#hexb_span").css("display", "block"), b = !1) : $("#hexb_span").css("display",
+                            "none"));
+                        if ($(this).attr("id") == "Rese_db_dl_dxyzid" && (r == null || r == "")) $("#yzm_span").css("display", "block"), b = !1
+                    });
+                    if (b == !1) return !1;
+                    h = "-1";
+                    h == "" && (h = "0");
+                    $.ajax({
+                        type: "post", url: basePath + "order/confirmV1.htm", data: {
+                            dutySourceId: y,
+                            hospitalId: q,
+                            departmentId: z,
+                            doctorId: A,
+                            patientId: k,
+                            medicalRecordId: v,
+                            hospitalCardId: f,
+                            jytCardId: w,
+                            medicareCardId: j,
+                            reimbursementType: x,
+                            smsVerifyCode: r,
+                            kinshipName: l,
+                            isFirstTime: i,
+                            hasPowerHospitalCard: u,
+                            childrenName: m,
+                            cidType: g,
+                            childrenIdNo: s,
+                            childrenBirthday: d,
+                            childrenGender: e,
+                            dlRegType: h,
+                            dlMajorId: "",
+                            mapDoctorId: "",
+                            isAjax: !0
+                        }, dataType: "json", beforeSend: function () {
+                            $("#Rese_db_qryy_btn_v1").attr("disabled", "disabled");
+                            t = !1
+                        }, complete: function () {
+                            $("#Rese_db_qryy_btn_v1").removeAttr("disabled");
+                            t = !0
+                        }, success: function (a) {
+                            if (a.isLineUp) if (a.code == 7) alert("\u6392\u961f\u7b49\u5f85\u4e2d !"); else if (a.code == 2 || a.code == 4 || a.code == 9) alert("\u9884\u7ea6\u6392\u961f\u5931\u8d25, \u8bf7\u7a0d\u540e\u91cd\u8bd5 !"); else if (a.code == 1 || a.code == 5) {
+                                var b = "";
+                                b += '<input name="lineUpFlag" value="' +
+                                    a.lineUpFlag + '"/>';
+                                $("#line-up").html(b);
+                                $("#line-up").attr("action", basePath + "order/lp.htm");
+                                $("#line-up").submit()
+                            } else alert.msg(a.msg); else a.code == 1 ? (b = "", b += '<input name="orderId" value="' + a.orderId + '"/>', $("#order-result").html(b), $("#order-result").attr("action", basePath + "order/result.htm"), $("#order-result").submit()) : alert(a.msg)
+                        }
+                    })
+                }
+            } else alert("\u8bf7\u52ff\u91cd\u590d\u63d0\u4ea4\uff01")
+        })
+    });</script>
+<script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/gvalidate.js"></script>
+<script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/birthday.js"></script>
+<script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/layer/layer.js"></script>
+<div id="fhdb"></div>
+<div id="bg"></div>
+<div id="footer">
+    <div class="footer_nb">
+        <div class="footer_img"><a class="footer_bjwjw" href="http://www.bjchfp.gov.cn/" target="_blank"></a><a
+                class="footer_liantong" href="http://www.10010.com/" target="_blank"></a></div>
+        <div id="lxwm_div" class="footer_yb">
+            <ul class="footer_ul">
+                <li><a href="/gl/contact.htm">联系我们</a></li>
+                <li><a href="/gl/partener.htm">合作伙伴</a></li>
+                <li class="footer_ul_lipad"><a href="/gl/statement.htm">法律声明</a></li>
+                <li><a href="/gl/service.htm">服务协议</a></li>
+                <li><a href="/u/feedback.htm">意见反馈</a></li>
+            </ul>
+            <p class="footer_p_bqsm">版权所有:京ICP备05056889号</p></div>
+        <div name="ewm_div" class="footer_ewm"><h3>下载官方APP</h3><span class="footer_ewm_span_1"><img
+                src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/footer_ewm2.png"></span></div>
+        <div name="ewm_div" class="footer_ewm"><h3>关注官方微信</h3><span class="footer_ewm_span_1"><img
+                src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/footer_ewm.png?v=1.0"></span></div>
+        <div id="ewm_div_3" class="footer_ewm_1" style="display: none"><h3>关注快医微信</h3><span
+                class="footer_ewm_span_1"><img src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/footer_ewm3.png"></span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function goonLogin() {
+        $(".djdl_fpsuts").hide();
+        popCenterWindow("#djdl", "#djdl_close");
+        reloadImage($("#yzmdl"))
+    }
+
+    function submitModifyPass() {
+        var a = $("#passWordfp"), b = $("#passWordAgainfp");
+        if (!a.valid()) return !1;
+        if (!b.valid()) return !1;
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: basePath + "help/rpassword.htm",
+            data: {pass: a.val(), isAjax: !0},
+            success: function (a) {
+                a.hasError ? alert(a.msg) : ($("#djdl_fpsu").css({display: "none"}), popCenterWindow(".djdl_fpsuts", "#djdl_fpsuts_close"))
+            }
+        })
+    }
+
+    function checkForm() {
+        var a = $("#djdl_fp_zjhm").val(), b = $("#djdl_fp_yzm").val(), c = $("#djdl_fp_sfzhm").val(),
+            d = $("#djdl_fp_sjyz").val();
+        if (!$("#djdl_fp_zjhm").valid()) return !1;
+        if (!$("#djdl_fp_yzm").valid()) return !1;
+        if (!$("#djdl_fp_sfzhm").valid()) return !1;
+        if (!isBindMobile("", "")) return !1;
+        if (!$("#djdl_fp_sjyz").valid()) return !1;
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: basePath + "help/fpassword.htm",
+            data: {cardNo: a, imageCode: b, phoneNo: c, phoneCode: d, isAjax: !0, channel: "zhmm"},
+            success: function (a) {
+                a.hasError ?
+                    alert(a.msg) : ($("#djdl_fp_close").click(), popCenterWindow("#djdl_fpsu", "#djdl_fpsu_close"))
+            }
+        })
+    }
+
+    function popDiv() {
+        $("#djdl_close").click();
+        popCenterWindow("#djdl_fpassword", "#djdl_fp_close");
+        reloadImage3($("#djdl_fp_yzmdl"), "zhmm")
+    }
+
+    function reloadImage(a) {
+        $(a).attr("src", "/IdentityServlet?ts=" + (new Date).getTime())
+    }
+
+    function reloadImage3(a, b) {
+        $(a).attr("src", "/IdentityServlet?ts=" + (new Date).getTime() + "&channel=" + b)
+    }
+
+    function isBindMobile() {
+        var a = !1;
+        $.ajax({
+            url: basePath + "v/mobilefp.htm",
+            type: "post",
+            async: !1,
+            data: {
+                idNo: $("#djdl_fp_zjhm").val(),
+                tupianyzm: $("#djdl_fp_yzm").val(),
+                sms: $("#djdl_fp_sfzhm").val(),
+                isAjax: !0
+            },
+            success: function (b) {
+                b != "true" ? ($("#djdl_fp_close").click(), popCenterWindow("#djdl_fpfalse", ""), a = !1) : a = !0
+            }
+        });
+        return a
+    }
+
+    $(function () {
+        footer_wrapBroadcastTimerInit()
+    });
+    var footer_wrapBroadcastFlag = !1, footer_wrapBroadcastTimers = [], footer_wrapBroadcastTimesInterval;
+
+    function footer_wrapBroadcastTimerInit() {
+        try {
+            $.ajax({
+                url: basePath + "wbctimers/2.htm", type: "post", dataType: "json", success: function (a) {
+                    if (a) if (a.code == 1) {
+                        if (a.data) footer_wrapBroadcastTimers = a.data, footer_initWrapBroadcastTransferTimer(), footer_wrapBroadcastTimesInterval = setInterval(footer_initWrapBroadcastTransferTimer, 6E4)
+                    } else console.log(a.msg); else console.log("\u7cfb\u7edf\u7e41\u5fd9\uff0c\u8bf7\u7a0d\u540e\u518d\u8bd5!!!")
+                }, error: function () {
+                    console.log("\u7cfb\u7edf\u7e41\u5fd9\uff0c\u8bf7\u7a0d\u540e\u518d\u8bd5!!!")
+                }
+            })
+        } catch (a) {
+        }
+    }
+
+    function footer_initWrapBroadcastTransferTimer() {
+        footer_wrapBroadcastTimers && footer_wrapBroadcastTimers.length > 0 ? $.each(footer_wrapBroadcastTimers, function (a, b) {
+            var c = b.startTime, d = b.endTime, e = !1;
+            (e = c == null || c == "" || d == null || d == "" ? !0 : compareTime(c, d)) ? footer_wrapBroadcastFlag || (footer_wrapBroadcastFlag = !0, $("#lxwm_div").removeClass("footer_yb"), $("#lxwm_div").addClass("footer_yb_1"), $("div[name='ewm_div']").removeClass("footer_ewm"), $("div[name='ewm_div']").addClass("footer_ewm_1"), $("#ewm_div_3").css("display",
+                "block")) : footer_wrapBroadcastFlag && ($("#lxwm_div").removeClass("footer_yb_1"), $("#lxwm_div").addClass("footer_yb"), $("div[name='ewm_div']").removeClass("footer_ewm_1"), $("div[name='ewm_div']").addClass("footer_ewm"), $("#ewm_div_3").css("display", "none"))
+        }) : clearInterval(footer_wrapBroadcastTimesInterval)
+    }
+
+    function compareTime(a, b) {
+        var c = new Date, d = c.toLocaleTimeString("chinese", {hour12: !1}).split(":"), e = a.split(":"),
+            f = b.split(":"), d = c.setHours(d[0], d[1]), e = c.setHours(e[0], e[1]), c = c.setHours(f[0], f[1]);
+        return e <= d && d <= c ? !0 : !1
+    }
+
+    $(function () {
+        initValidatorFindPW();
+        initValidatorFindPW2();
+        sendSmsCodeBtn({
+            GLVar: "btnSendCodeVLogin",
+            btnId: "#btnSendCodeVLogin",
+            formId: "#rg_nrfrom2",
+            url: basePath + "v/sendcodecommon.htm",
+            valid: function () {
+                if (!$("#zjhmVerifyLogin").valid()) return !1;
+                if (!$("#mobileVerifyLogin").valid()) return !1;
+                if (!$("#yzmVerifyLogin").valid()) return !1;
+                return !0
+            },
+            ok: function () {
+                $("#vresultspan").html("<p class='sms_suce' for='nameVerifyLogin' generated='true'>\u77ed\u4fe1\u53d1\u9001\u6210\u529f,\u8bf75\u5206\u949f\u5185\u8f93\u5165.</p>")
+            },
+            notok: function (a) {
+                $("#vresultspan").html("<p class='error' for='nameVerifyLogin' generated='true'>" + a.msg + "</p>")
+            },
+            error: function () {
+                $("#vresultspan").html("<p class='error' for='nameVerifyLogin' generated='true'>\u77ed\u4fe1\u53d1\u9001\u5931\u8d25.</p>")
+            }
+        });
+        sendSmsCodeBtn({
+            GLVar: "btnSendCodeFPW",
+            btnId: "#btnSendCodeFPW",
+            formId: "#rg_nrfrom6",
+            url: basePath + "v/sendcodecommon.htm",
+            valid: function () {
+                if (!$("#djdl_fp_zjhm").valid()) return !1;
+                if (!$("#djdl_fp_yzm").valid()) return !1;
+                if (!$("#djdl_fp_sfzhm").valid()) return !1;
+                if (!isBindMobile("", "")) return !1;
+                return !0
+            },
+            ok: function () {
+                alert(prompts.sms_code_send_ok)
+            },
+            notok: function (a) {
+                alert(a.msg)
+            },
+            error: function () {
+                alert(prompts.sms_code_send_failed)
+            }
+        })
+    });</script>
+<script type="text/javascript">
+    wValChg('yyk', 'h');
+</script>
+<script type="text/javascript">
+
+    $(function () {
+        fixedBoxBackTop();
+        fixedBoxHover();
+
+        function fixedBoxHover() {
+            var a = $(".float-div .fixed-right-part");
+            a.each(function (b) {
+                var c = $(this);
+                c.hover(function () {
+                    $(this).addClass("fixed-right-part-hover")
+                }, function () {
+                    $(this).removeClass("fixed-right-part-hover")
+                })
+            })
+        }
+
+        function fixedBoxBackTop() {
+            var a = $(window).scrollTop();
+            var b = $("#back-top");
+            if (a > 50) {
+                b.addClass("back-top-active")
+            } else {
+                b.removeClass("back-top-active")
+            }
+            $(window).scroll(function () {
+                a = $(window).scrollTop();
+                if (a > 50) {
+                    b.addClass("back-top-active")
+                } else {
+                    b.removeClass("back-top-active")
+                }
+            });
+            b.click(function () {
+                $("html,body").animate({
+                    scrollTop: "0px"
+                }, 300)
+            })
+        }
+
+    });
+</script>
+<script src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/ymxg.js"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?bc7eaca5ef5a22b54dd6ca44a23988fa";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>
