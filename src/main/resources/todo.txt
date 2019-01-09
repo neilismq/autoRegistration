@@ -1,0 +1,85 @@
+某个时间点一声出诊情况（具体日期-上午或下午）
+请求url和参数：
+http://www.bjguahao.gov.cn/dpt/partduty.htm POST
+hospitalId=142&departmentId=200039524&dutyCode=2&dutyDate=2019-01-16&isAjax=true
+医院id、部门id、dutyCode 1-上午出诊 2-下午出诊、出诊日期
+todo:找到医院id和部门id
+返回内容：
+{
+  "data": [
+    {
+      "dutySourceId": 59980692,
+      //出诊号
+      "portrait": "",
+      //画像
+      "doctorName": "普通门诊",
+      //医生名称
+      "doctorTitleName": "普通门诊",
+      "skill": "",
+      //擅长技能
+      "totalFee": 50.0,
+      //价格
+      "remainAvailableNumber": 0,
+      //剩余可用的号
+      "dutySourceStatus": 1,
+      //出诊号状态
+      "hospitalId": 142,
+      //医院id
+      "departmentId": "200039524",
+      //部门id
+      "doctorId": "201155034",
+      //医生id
+      "drCode": null,
+      "planCode": null,
+      "dutyDate": null,
+      "dutyCode": null,
+      "dutyType": null,
+      "majorId": null,
+      "mapDoctorId": null,
+      "departmentName": null,
+      "isShowFee": 1,
+      //是否显示费用
+      "dlDutySources": null,
+      "morningnum": 0,
+      //早上号？
+      "afternoonnum": 0,
+      //下午号？
+      "majorName": null,
+      "majorIntroduce": null,
+      "mapDutySourceId": null,
+      "dldutyDate": null,
+      "dldutyCode": null,
+      "regNo": 0 //注册号
+    }
+  ]
+}
+
+
+医院查询
+http://www.bjguahao.gov.cn/hp/qsearch.htm?areaId=-1&levelId=-1&isAjax=true GET
+
+http://www.bjguahao.gov.cn/hp/1,1,2,110101.htm
+1,医院类型,医院等级,医院位置
+1-卫生部直属医院-二甲医院-东城区
+
+骨科
+http://www.bjguahao.gov.cn/dpt/hps/1,0,0,0,90.htm
+90-骨科代码
+
+
+http://www.bjguahao.gov.cn/dpt/appoint/142-200039524.htm 医院id+科室id
+
+http://www.bjguahao.gov.cn/order/confirm/142-200039608-201147114-59981344.htm
+
+发送验证码
+http://www.bjguahao.gov.cn/v/sendorder.htm POST
+{"code":200,"msg":"OK."}
+
+预约
+http://www.bjguahao.gov.cn/order/confirmV1.htm POST
+dutySourceId=59981344&hospitalId=142&departmentId=200039608&doctorId=201147114&patientId=230962426&hospitalCardId=&medicareCardId=&reimbursementType=1&smsVerifyCode=497121&childrenBirthday=&dlRegType=-1&dlMajorId=&mapDoctorId=&isAjax=true
+{"msg":"成功","code":1,"orderId":"100733160","isLineUp":false}
+
+取消号
+http://www.bjguahao.gov.cn/order/cel.htm  POST
+orderId=100733160&hospitalType=1&isAjax=true
