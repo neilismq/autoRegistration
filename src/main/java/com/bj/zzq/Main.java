@@ -2,6 +2,8 @@ package com.bj.zzq;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.Header;
+import org.apache.http.HttpHost;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -13,14 +15,18 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.protocol.ResponseContent;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import sun.awt.SunHints;
 
+import javax.swing.plaf.SliderUI;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -32,6 +38,13 @@ import java.util.Scanner;
  */
 public class Main {
     private static String cookie = "";
+    private static Map orderParams = new HashMap<String, String>();
+    private static String domain = "http://www.bjguahao.gov.cn";
+    private static String loginUrl = "http://www.bjguahao.gov.cn/quicklogin.htm";
+
+    static {
+        orderParams.put("hospitalType", "1");
+    }
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -45,23 +58,24 @@ public class Main {
 //        String date = "";
 //        //上午还是下午 1-上午，2-下午
 //        String amOrPm = "";
-//        //医生名称,包括 普通门诊、副主任医师、主任医师、真正姓名、
+//        //医生名称,包括 普通门诊、副主任医师、主任医师、真正姓名
 //        String doctorName = "";
 //        //医生职位,包括 普通门诊、副主任医师、主任医师、知名专家
 //        String doctorPosition = "";
 
         //登录账号
         main.login(username, password);
+        main.hospitalId("北京大学第三医院");
         //main.cancleOrder("100747890");
         //因为验证码发送较慢，先发送
-        main.sendValidateCode();
+        //main.sendValidateCode();
         //出诊号-北京大学第三医院-中医科-普通门诊（医生）-病人id-就医卡号-医保卡号-报销类型-验证码
-        String[] test = {"59981348", "142", "200039608", "201147114", "230962426", "", "", "1"};
-        //先从控制台获取验证码
-        System.out.print("请输入验证码：");
-        Scanner scan = new Scanner(System.in);
-        String validateCode = scan.nextLine();
-        main.order(test[0], test[1], test[2], test[3], test[4], test[5], test[6], test[7], validateCode);
+//        String[] test = {"59981348", "142", "200039608", "201147114", "230962426", "", "", "1"};
+//        //先从控制台获取验证码
+//        System.out.print("请输入验证码：");
+//        Scanner scan = new Scanner(System.in);
+//        String validateCode = scan.nextLine();
+//        main.order(test[0], test[1], test[2], test[3], test[4], test[5], test[6], test[7], validateCode);
     }
 
     public static String base64ToString(String str) {
@@ -74,7 +88,7 @@ public class Main {
     }
 
     //请求工具
-    public static CloseableHttpResponse doHttp(String method, String url, HashMap<String, String> headers, HashMap<String, String> params) {
+    public static String doHttp(String method, String url, HashMap<String, String> headers, HashMap<String, String> params) {
         //默认http客户端，毫秒级
         CloseableHttpClient httpclient = HttpClients.createDefault();
 
@@ -119,14 +133,23 @@ public class Main {
             httpRequestBase.addHeader("Cookie", cookie);
         }
 
-        // 执行请求
-        CloseableHttpResponse response = null;
+        //设置代理,方便查看请求
+        HttpHost proxy = new HttpHost("127.0.0.1", 8888, "http");
+        RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+        httpRequestBase.setConfig(config);
+
+        String result = "";
         try {
-            response = httpclient.execute(httpRequestBase);
+            // 执行请求
+            CloseableHttpResponse response = httpclient.execute(httpRequestBase);
+            result = EntityUtils.toString(response.getEntity(), "UTF-8");
+
+            if ("http://www.bjguahao.gov.cn/quicklogin.htm".equals(url))
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return response;
+        return result;
+
     }
 
     /**
@@ -144,39 +167,36 @@ public class Main {
         params.put("yzm", "");
         params.put("isAjax", "true");
 
-        CloseableHttpResponse response = doHttp("post", loginUrl, null, params);
+        String result = doHttp("post", loginUrl, null, params);
 
-        // 判断返回状态是否为200
-        if (response.getStatusLine().getStatusCode() == 200) {
-
-            //获取cookie
-            Header[] allHeaders = response.getAllHeaders();
-            //获取cookie
-            for (Header header : allHeaders) {
-                String name = header.getName();
-                if ("Set-Cookie".equals(name)) {
-                    String value = header.getValue();
-                    value = value.substring(0, value.indexOf(";") + 1);
-                    cookie += " " + value;
-                }
-            }
-            cookie = cookie.substring(1);
-
-            //返回内容
-            try {
-                String result = EntityUtils.toString(response.getEntity(), "UTF-8");
-                JSONObject jsonObject = (JSONObject) JSONObject.parse(result);
-                Boolean hasError = jsonObject.getBoolean("hasError");
-                Integer code = jsonObject.getInteger("code");
-                if (hasError == false && code == 200) {
-                    System.out.println("-------------------");
-                    System.out.println("     登录成功");
-                    System.out.println("-------------------");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        //获取cookie
+        Header[] allHeaders = response.getAllHeaders();
+        //获取cookie
+        for (Header header : allHeaders) {
+            String name = header.getName();
+            if ("Set-Cookie".equals(name)) {
+                String value = header.getValue();
+                value = value.substring(0, value.indexOf(";") + 1);
+                cookie += " " + value;
             }
         }
+        cookie = cookie.substring(1);
+
+        //返回内容
+        try {
+            String result = EntityUtils.toString(response.getEntity(), "UTF-8");
+            JSONObject jsonObject = (JSONObject) JSONObject.parse(result);
+            Boolean hasError = jsonObject.getBoolean("hasError");
+            Integer code = jsonObject.getInteger("code");
+            if (hasError == false && code == 200) {
+                System.out.println("-------------------");
+                System.out.println("     登录成功");
+                System.out.println("-------------------");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -268,7 +288,33 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    /**
+     * @param hospitalName 医院名称(需要全称)
+     */
+    public void hospitalId(String hospitalName) throws IOException {
+
+        String searchUrl = "http://www.bjguahao.gov.cn/hp/search.htm";
+        String method = "GET";
+        HashMap<String, String> params = new HashMap<>();
+        params.put("words", hospitalName);
+
+        CloseableHttpResponse response = doHttp(method, searchUrl, null, params);
+
+        String result = EntityUtils.toString(response.getEntity(), "UTF-8");
+        //返回的是html页面
+        Document document = Jsoup.parse(result);
+        Elements hospitalLink = document.select("a.yiyuan_co_xzyy");
+        String hospitalHref = hospitalLink.attr("href");
+        //example /hp/appoint/1/142.htm
+        String[] split = hospitalHref.split("/");
+        String hospitalId = split[4].substring(0, split[4].length() - 3);
+        orderParams.put("hospitalId", hospitalId);
+
+        CloseableHttpResponse get = doHttp("GET", domain + hospitalHref, null, null);
 
     }
+
+
 }

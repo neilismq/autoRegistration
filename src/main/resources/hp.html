@@ -1,0 +1,208 @@
+
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="user-scalable = no"/><title>北京市预约挂号统一平台</title><script type="text/javascript">
+    if (typeof (GS) == "undefined" || !GS) {var GS = {};}
+    GS.Url = {basePath:"/",hs:"http://img.bjguahao.gov.cn/ws/1.0/hs/",hps:"http://img.bjguahao.gov.cn/",uploadUrl:"/u/upimg.htm",uploadFileUrl:"/u/upimg.htm",specializedHospitalUrl:"http://zmyygh.114menhu.com/"};
+    var basePath = GS.Url.basePath,hs=GS.Url.hs,hps=GS.Url.hps;
+    var logined = false;</script><link rel="shortcut icon" href="http://img.bjguahao.gov.cn/ws/1.0/hs/images/favicon.ico" type="image/x-icon"/><link rel="stylesheet" type="text/css" href="http://img.bjguahao.gov.cn/ws/1.0/hs/css/style.css?v=3.0"><link rel="stylesheet" type="text/css" href="http://img.bjguahao.gov.cn/ws/1.0/hs/css/rl_jquery.ui.css"><link rel="stylesheet" type="text/css" href="http://img.bjguahao.gov.cn/ws/1.0/hs/css/rl_css.css"><link rel="stylesheet" type="text/css" href="http://img.bjguahao.gov.cn/ws/1.0/hs/css/yidongduan.css"/><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/jquery-1.7.1.min.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/jquery.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/top.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/hospitalslist.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/loginpop.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/ajaxfileupload.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/global.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/userattention.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/formater.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/jquery.validate.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/validate_expand.js?v=1.0"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/validate3.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/gvalidate.js"></script><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/topdate.js"></script><script type="text/javascript" src="/hp/regex.htm"></script></head><body><div id="dbnav"><div class="dbnav_context"><p class="dbnav_context_left"><img src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/dbnav.png"><span>010-114/116114电话预约</span></p><p class="dbnav_context_right" id="isLogin">欢迎来到北京市预约挂号统一平台 请<a id="bdtj1" href="javascript:void(0);" class="db_denglu" onclick="center('#djdl','#djdl_close');">登录</a><a id="bdtj2" href="/reg.htm" target="_blank">注册</a></p><div class="top_help"><p class="top_help_p"><a id="bdtj3" href="/help.htm" target="_blank">帮助中心</a></p><div class="top_help_h" style="display:none;"><a href="/help/reg.htm" target="_blank">注册指南</a><a href="/help/intro.htm" target="_blank">预约指南</a><a href="/help/retracc1.htm" target="_blank">账号申诉</a><a href="/help/common.htm" target="_blank">常见问题</a></div></div></div></div><div id="top"><div class="top_left"><a href="/index.htm"><img src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/logo.jpg"><h2 class="top_h2">北京市预约挂号统一平台</h2></a></div><div class="top_search"><form method="get" name="search" action="/hp/search.htm" onsubmit="return checkwords();"><div class="option" onclick="wValDisp('h','yyk');" id="wn_h_div"><span id="wn_h">医院</span></div><div class="sbox"><input onblur="javascript:if(this.value=='')this.value='请输入搜索内容';" onfocus="javascript:if(this.value=='请输入搜索内容')this.value='';" value="请输入搜索内容" maxlength=30 name="words" type="text" id="words"/></div><div class="sbtn"><input type="submit" value="" style="letter-spacing: -1px;"/></div><div id="sbArea_h" style="display:none;"><a target="_self" href="javascript:wValChg('ksk','h');"><div class="dselObj" id="wv_h_2">科室</div></a><a target="_self" href="javascript:wValChg('jbk','h');"><div class="dselObj" id="wv_h_4">疾病</div></a><a target="_self" href="javascript:wValChg('yyk','h');"><div class="dselObj" id="wv_h_1">医院</div></a></div></form></div></div><div id="float-guangao" class="float-div"><a class="fixed-right-part"><span class="tab-icon tab-icon1"></span><div class="tab-text fixed-right-dowload-qr fixed-qr-box"><img src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/index-right-appdown.png"><p>扫码下载APP</p></div></a><a class="fixed-right-part"><span class="tab-icon tab-icon2"></span><div class="tab-text fixed-right-wechat fixed-qr-box"><img src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/index-right-gzh.png"><p>关注微信公众号</p></div></a><a class="fixed-right-part back-top back-top-active" id="back-top"><span class="tab-icon tab-icon3"></span><em class="tab-text">返回顶部</em></a></div><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/base64.js?v=20181008"></script><div id="djdl"><div class="djdl_tab"><div id="djdl_menui" class="djdl_menu"><ul><li class="djdl_selected">快速登录</li><li>验证登录</li></ul></div><div id="djdl_tab_id" class="djdl_tab_box"><form id="rg_nrfrom1" method="post" action=""><div class="ksdl_ul"><div class="ysdl_tsyj"><p>温馨提示：已注册但未设置登录密码的用户须使用验证登录方式。</p></div><div class="vre_err"><span id="qresultspan"></span></div><dl class="djdl_ty_dl"><dt>手机号码：</dt><dd><input id="mobileQuickLogin" name="smsQuick" type="text" class="register_input" maxlength=18 value="已注册手机号码" onfocus="javascript:if(this.value=='已注册手机号码')this.value='',style.color='#000'; $('.hl_tsxx_yc').show()" onblur="javascript:if(this.value=='')this.value='已注册手机号码',style.color='#ccc';" style="color: #ccc;"><b class="tipinfo">*</b></dd></dl><dl class="djdl_ty_dl"><dt>登录密码：</dt><dd><input type="password" name="passWordQuick" autocomplete="off" style="display:none" id="pw"/><input id="pwQuickLogin" name="passWordQuick" type="passWord" autocomplete="off" class="register_input" maxlength=18><b class="tipinfo">*</b><b class="tipinfo"></b></dd></dl><dl id="quick_login_yzm_dl" class="djdl_ty_dl" style="display: none;"><dt>验证码：</dt><dd><div style="float:left;"><input id="yzmQuickLogin" name="yzmQuick" maxlength=4 type="text" class="register_inputa"><a href="javascript:reloadImage($('#quick_login_yzmdl'));" class="sydl_yzmtp"><img id="quick_login_yzmdl" src="" align="absmiddle" class="register_yzm"></a><a href="javascript:reloadImage($('#quick_login_yzmdl'));" class="sydl_new_hyz"></a></div><span><b class="tipinfo">*</b></span></dd></dl><div class="tydiv"><input id="quick_login" name="submit" type="submit" class="ksdl_ul_denglu djdl_nav_qr" value="登录"><a href="/reg.htm" class="ksdl_ul_register" target="_blank">注册新用户</a></div><a href="javascript:void(0);" class="ksdl_ul_wjmm" onclick="popDiv();">忘记密码?</a></div></form><form id="rg_nrfrom2" method="post" action="" class="djdl_hide"><div class="ysdl_ul"><div class="ysdl_tsyj"><p>温馨提示：已注册并设置登录密码的用户须使用快速登录方式。</p></div><div class="vre_err"><span id="vresultspan"></span></div><dl class="djdl_ty_dl"><dt>用户姓名：</dt><dd><input id="nameVerifyLogin" name="userName" type="text" class="register_input" value="请填写已注册用户真实姓名" onfocus="javascript:if(this.value=='请填写已注册用户真实姓名')this.value='',style.color='#000';" onblur="javascript:if(this.value=='')this.value='请填写已注册用户真实姓名',style.color='#ccc';" style="color:#ccc"><b class="tipinfo">*</b></dd></dl><dl class="djdl_ty_dl"><dt>证件号码：</dt><dd><input id="zjhmVerifyLogin" name="isshefn" type="text" class="register_input" maxlength=20 value="与用户姓名对应的证件号码" onfocus="javascript:if(this.value=='与用户姓名对应的证件号码')this.value='',style.color='#000';" onblur="javascript:if(this.value=='')this.value='与用户姓名对应的证件号码',style.color='#ccc';" style="color: #ccc;"><b class="tipinfo">*</b></dd></dl><dl class="djdl_ty_dl"><dt>手机号码：</dt><dd><input id="mobileVerifyLogin" name="sms" type="text" class="register_input" maxlength=18 value="与证件号码绑定的手机号码" onfocus="javascript:if(this.value=='与证件号码绑定的手机号码')this.value='',style.color='#000'; $('.hl_tsxx_yc').show()" onblur="javascript:if(this.value=='')this.value='与证件号码绑定的手机号码',style.color='#ccc';" style="color: #ccc;"><b class="tipinfo">*</b></dd></dl><dl class="djdl_ty_dl"><dt>验证码：</dt><dd><div style="float:left;"><input id="yzmVerifyLogin" name="code" maxlength=4 type="text" class="register_inputa"><a href="javascript:reloadImage3($('#yzmdl'),'yzdl');" class="sydl_yzmtp"><img id="yzmdl" src="" align="absmiddle" class="register_yzm"></a><a href="javascript:reloadImage3($('#yzmdl'),'yzdl');" class="sydl_new_hyz"></a><input name="channel" type="hidden" value="yzdl"></div><b class="tipinfo">*</b></dd></dl><dl class="djdl_ty_dl"><dt>手机验证码：</dt><dd><input id="sjyzmVerifyLogin" name="smsCode" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength=6 type="text" class="register_inputa"><input id="btnSendCodeVLogin" name="yt0" class="msjyz_dj" type="button" value="获取验证码"><b class="tipinfo">*</b></dd></dl><div class="tydiv"><input id="verify_login" name="submit" type="submit" class="ysdl_ul_denglu djdl_nav_qr" value="登录"><a href="/reg.htm" class="ysdl_ul_register" target="_blank">注册新用户</a></div></div><input name="smsType" type="hidden" value="2"/><input id="loginLocation" name="loginLocation" type="hidden" value="1"/><div class="hl_tsxx_yc">手机号码帮助：1.若您注册时没有绑定手机号码或您在114坐席系统预留的是座机号码，请填写您现有的手机号码与您的注册身份信息进行绑定。2.若您填写的手机号码与初始注册时绑定的手机号码不一致，请通过<a href="/help/retracc1.htm">账号申诉</a>修改绑定手机号。3.若您填写的手机号已被其他用户绑定，请输入其他有效手机号进行验证登录。 </div></form></div></div><div id="djdl_close"><a></a></div></div><div id="djdl_fpassword" class="djdl_fpassword" style="display: none;"><form id="rg_nrfrom6" method="post" action=""><h3 class="djdl_fpassword_h3">密码找回</h3><div class="djdl_fpassword_content"><div class="vre_err"><span id="fpresultspan"></span></div><dl class="djdl_ty_dl"><dt>证件号码：</dt><dd><input id="djdl_fp_zjhm" name="isshefn" type="text" class="register_input"><b class="tipinfo"></b></dd></dl><dl class="djdl_ty_dl"><dt>验证码：</dt><dd><input id="djdl_fp_yzm" name="code" maxlength="4" type="text" class="register_inputa"><a href="javascript:reloadImage3($('#djdl_fp_yzmdl'),'zhmm');" class="sydl_yzmtp"><img id="djdl_fp_yzmdl" src="" align="absmiddle" class="djdl_fp_yzm"></a><a href="javascript:reloadImage3($('#djdl_fp_yzmdl'),'zhmm');" class="sydl_new_hyz"></a><input name="channel" type="hidden" value="zhmm"></dd></dl><dl class="djdl_ty_dl"><dt>手机号码：</dt><dd><input id="djdl_fp_sfzhm" name="sms" type="text" class="register_input"><b class="tipinfo"></b></dd></dl><dl class="djdl_ty_dl"><dt>手机验证码：</dt><dd><input id="djdl_fp_sjyz" name="smsCode" type="text" class="register_inputa"><input id="btnSendCodeFPW" name="yt0" class="djdl_fpjyz_dj" type="button" value="获取验证码"></dd></dl><input name="smsType" value="8" type="hidden"/><input id="djdl_fp_qr2" name="button" type="button" class="djdl_fp_qr2" value="确认" onclick="checkForm();"><input name="submit" type="submit" class="djdl_fp_qr1" value="返回"><br></div></form><div id="djdl_fp_close"><a></a></div></div><div id="djdl_fpsu" class="djdl_fpsu"><form id="rg_nrfrom7" method="post" action=""><h3 class="djdl_fpsu_h3">密码找回</h3><p class="djdl_twop_tsxp">请您输入您的新密码并确认</p><div class="djdl_fpsu_success"><div class="vre_err"><span id="fp2resultspan"></span></div><dl class="djdl_ty_dl"><dt>设置密码：</dt><dd><input id="passWordfp" name="passWord" type="password" autocomplete="off" class="register_input"><b class="tipinfo"></b></dd></dl><dl class="djdl_ty_dl"><dt>确认密码：</dt><dd><input type="password" name="passWordAgain" autocomplete="off" style="display:none" id="pw2"/><input id="passWordAgainfp" name="passWordAgain" type="password" autocomplete="off" class="register_input"><b class="tipinfo"></b></dd></dl><input name="submit" type="button" class="djdl_fpsu_qr2" value="确认修改" onclick="submitModifyPass();"></div></form><div id="djdl_fpsu_close" class="tang_close" style="z-index:9999;"><a></a></div></div><div class="djdl_fpsuts" id="djdl_fpsuts_success"><h3 class="djdl_fpsuts_h3">密码找回</h3><div class="djdl_fpsuts_success"><p>恭喜您密码修改成功</p><a href="/logout.htm" class="djdl_fpsuts_jxdl">继续登录</a></div><div id="djdl_fpsuts_close" class="tang_close3"><a></a></div></div><div id="djdl_fpfalse" class="djdl_fpfalse"><h3 class="djdl_fpfalse_h3">密码找回</h3><div class="djdl_fpfalse_success"><p> 您的手机验证码输入错误，如果您的绑定手机号码有误<br>请点击“账号申诉”。 </p><a href="javascript:$('#djdl_fpfalse').hide();popDiv();" class="djdl_fpfalse_callback">返回</a><a href="/help/retracc2.htm" class="djdl_fpfalse_zhzh">账号申诉</a></div><div id="djdl_fpfalse_close"><a href="javascript:void(0)" class="tang_close_ZH"></a></div></div><div id="djdl_twoperson" class="djdl_twoperson" style="display:none"></div><div id="djdl_twoperson5" class="djdl_twoperson5"><h3 class="djdl_twoperson_h3">用户登录</h3><div class="djdl_tw_success"><p id="setsus">密码设置成功，欢迎您来到北京市预约挂号统一平台</p><a id="djdl_twop_qr" class="djdl_twop_qr tang_close2">确认</a></div><div id="djdl_twoperson5_close" class="tang_close2"><a></a></div></div><div id="denglucg"><iframe style="position:absolute;width:100%;height:100%;_filter:alpha(opacity=0);opacity:0;border-style:none;z-index:-1;border:0"></iframe><div class="denglucg_tp"><img src="http://img.bjguahao.gov.cn/ws/1.0/hs//images/denglucheng.jpg"><p>登录成功</p></div></div><div class="djdl_twoperson6"><form id="rg_nrfrom10" method="post" action=""><h3 class="djdl_twoperson_h3">用户登录</h3><div class="djdl_twoperson_content"><p class="djdl_twop_tsxx4">您好，使用非身份证号注册的用户需要补全性别及年龄信息</p><div class="vre_err"><span id="vresultspan3"><p class="error" generated="true" for="setpassword">请您选择出生日期</p></span></div><dl class="djdl_ty_dl"><dt>用户：</dt><dd>张先生 军官证 H123456</dd></dl><dl class="djdl_ty_dl"><dt>性别：</dt><dd><a href="1" class="rg_nr_boy rg_nr_acolor">男</a><a href="2" class="rg_nr_girl">女</a><b class="tipinfo"></b></dd></dl><dl class="djdl_ty_dl"><dt>出生日期：</dt><dd><select id="sel_year2" class="zj_select" style="color:#ccc" onChange="var index = $(this).children('option:selected').index();this.style.color=(index==0?'#ccc':'black')"></select><select id="sel_month2" class="zj_select" style="color:#ccc" onChange="var index = $(this).children('option:selected').index();this.style.color=(index==0?'#ccc':'black')"></select><select id="sel_day2" class="zj_select" style="color:#ccc" onChange="var index = $(this).children('option:selected').index();this.style.color=(index==0?'#ccc':'black')"></select><b class="tipinfo"></b></dd></dl><input name="submit" type="submit" class="djdl_twop_qr1" value="确认"></div><script type="text/javascript" src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/birthday2.js"></script></form><div id="djdl_twoperson_close"><a href="#"></a></div></div><div class="use_shimingrenz" id="use_smrztc2"><div class="use_smrztc_sb2"><p>实名认证中<b class="divTime"></b></p></div></div><script>
+    /*点击登录的弹窗*/
+    $(document).ready(function() {
+        $(".db_denglu").click(function() {
+            popCenterWindow("#djdl", ".ksdl_ul_denglu", "#djdl_close");
+            reloadImage3($('#yzmdl'),'yzdl');
+        });
+    });
+
+    var windowHeight;
+
+    var windowWidth;
+
+    var popWidth;
+
+    var popHeight;
+    function init(odiv) {
+        windowHeight = $(window).height();
+        windowWidth = $(window).width();
+        popHeight = $(odiv).outerHeight();
+        popWidth = $(odiv).outerWidth();
+    }
+
+    function popCenterWindow(odiv, clos, clos2) {
+        init(odiv);
+
+        var popY = (windowHeight - popHeight) / 2;
+        var popX = (windowWidth - popWidth) / 2;
+
+        $(odiv).css("top", popY + $(window).scrollTop()).css("left", popX)
+            .show();
+        $("#bg").css({
+            display : "block",
+            height : $(document).height()
+        });
+
+        $(window).on('resize scroll', function() {
+            $(odiv).css("top", popY + $(window).scrollTop()).css("left", popX);
+        });
+    }
+
+    function popCenterWindow2(odiv2) {
+        init(odiv2);
+
+        var popY = (windowHeight - popHeight) / 2;
+        var popX = (windowWidth - popWidth) / 2;
+
+        $(odiv2).css("top", popY + $(window).scrollTop()).css("left", popX)
+            .show(200).delay(2000).hide(100);
+
+        $(window).on(
+            'resize scroll',
+            function() {
+                $(odiv2).css("top", popY + $(window).scrollTop()).css(
+                    "left", popX);
+            });
+    }
+
+    var btnCloseTang = $("#djdl_close > a");
+    /* var btn = document.getElementById("djdl_close");
+    btn.onclick = function() {
+        var div = $("#djdl");
+        div.css({
+            "display" : "none"
+        });
+        $("#bg").css("display", "none");
+    } */
+    $("#djdl_close").click(function(){
+        $("#djdl").css({
+            "display" : "none"
+        });
+        $("#bg").css("display", "none");
+    });
+
+    /* var btnCloseMMZH = $("#djdl_fp_close > a");
+    var btnCl = document.getElementById("djdl_fp_close");
+    btnCl.onclick=function(){
+        var divs = $("#djdl_fpassword");
+        divs.css({"display":"none"});
+        $("#bg").css("display", "none");
+    }; */
+
+    $("#djdl_fp_close").click(function() {
+        $("#djdl_fpassword").css({
+            "display" : "none"
+        });
+        $("#bg").css({
+            "display" : "none"
+        });
+    });
+
+    $(".tang_close").click(function() {
+        $("#djdl_fpsu").css({
+            "display" : "none"
+        });
+        $("#bg").css({
+            "display" : "none"
+        });
+    });
+
+    $(".tang_close2").click(function() {
+        $("#djdl_twoperson5").css({
+            "display" : "none"
+        });
+        $("#bg").css({
+            "display" : "none"
+        });
+    });
+    $(".tang_close3").click(function() {
+        $("#djdl_fpsuts_success").css({
+            "display" : "none"
+        });
+        $("#bg").css({
+            "display" : "none"
+        });
+    });
+
+    $(".tang_close_ZH").click(function() {
+        $("#djdl_fpfalse").css({
+            "display" : "none"
+        });
+        $("#bg").css({
+            "display" : "none"
+        });
+    });
+
+    $(function () {
+        $.ms_DatePicker({
+            YearSelector: ".sel_year",
+            MonthSelector: ".sel_month",
+            DaySelector: ".sel_day"
+        });
+        $.ms_DatePicker();
+    });
+</script><div id="nav"><div id="nav_box"><ul class="nav_ul"><li><a href="/index.htm">首页</a></li><li><a href="/hp.htm">按医院挂号</a></li><li><a href="/dpt.htm">按科室挂号</a></li><li><a href="/dis.htm">按疾病挂号</a></li><li><a href="/ann.htm">最新公告</a></li></ul></div></div><div id="ksghny_dh"><div class="ksghny_dh1"><dl class="ksghny_dh1_dl"><dt><span>医院类型</span><a id="MedicalInstitution0" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=0">全部</a></dt><dd><li><a id="MedicalInstitution1" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=1&hospitalLevelId=0&countyId=0 ">卫生部直属医院</a></li><li><a id="MedicalInstitution2" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=2&hospitalLevelId=0&countyId=0 ">北京市卫生局直属医院</a></li><li><a id="MedicalInstitution3" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=3&hospitalLevelId=0&countyId=0 ">中国医科院所属医院</a></li><li><a id="MedicalInstitution4" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=4&hospitalLevelId=0&countyId=0 ">中国中医科学院</a></li><li><a id="MedicalInstitution5" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=5&hospitalLevelId=0&countyId=0 ">北京中医药大学</a></li><li><a id="MedicalInstitution6" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=6&hospitalLevelId=0&countyId=0 ">北京大学附属医院</a></li><li><a id="MedicalInstitution7" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=7&hospitalLevelId=0&countyId=0 ">驻京武警医院</a></li><li><a id="MedicalInstitution8" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=8&hospitalLevelId=0&countyId=0 ">驻京部队医院</a></li><li><a id="MedicalInstitution9" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=9&hospitalLevelId=0&countyId=0 ">部属厂矿高校医院</a></li><li><a id="MedicalInstitution10" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=10&hospitalLevelId=0&countyId=0 ">北京区县属医院</a></li><li><a id="MedicalInstitution11" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=11&hospitalLevelId=0&countyId=0 ">其他</a></li></dd></dl></div><div class="ksghny_dh2"><dl class="ksghny_dh1_dl"><dt><span>医院等级</span><a id="HospitalLevel0" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=0">全部</a></dt><dd><li><a id="HospitalLevel3" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=3&countyId=0 ">三级医院</a></li><li><a id="HospitalLevel2" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=2&countyId=0 ">二级医院</a></li><li><a id="HospitalLevel1" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=1&countyId=0 ">一级医院</a></li></dd></dl></div><div class="ksghny_dh3"><dl class="ksghny_dh1_dl"><dt><span>医院位置</span><a id="County0" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=0">全部</a></dt><dd><li><a id="County110101" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110101">东城区</a></li><li><a id="County110102" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110102">西城区</a></li><li><a id="County110105" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110105">朝阳区</a></li><li><a id="County110106" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110106">丰台区</a></li><li><a id="County110107" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110107">石景山区</a></li><li><a id="County110108" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110108">海淀区</a></li><li><a id="County110109" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110109">门头沟区</a></li><li><a id="County110111" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110111">房山区</a></li><li><a id="County110112" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110112">通州区</a></li><li><a id="County110113" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110113">顺义区</a></li><li><a id="County110114" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110114">昌平区</a></li><li><a id="County110115" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110115">大兴区</a></li><li><a id="County110116" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110116">怀柔区</a></li><li><a id="County110117" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110117">平谷区</a></li><li><a id="County110228" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110228">密云县</a></li><li><a id="County110229" href="/hp/search.htm?words=北京大学第三医院&page=1&miTypeId=0&hospitalLevelId=0&countyId=110229">延庆区</a></li></dd></dl></div></div><div id="ksyiyuan_list"><div id="ksyiyuan_content"><div class="yiyuan_content_1"><dl class="yiyuan_co_dl"><dt class="yiyuan_co_dt"><a href="/hp/appoint/1/142.htm"><img src="http://img.bjguahao.gov.cn/naja/hospital/142.jpg" onerror="if (this.src != 'http://img.bjguahao.gov.cn/naja/default/images/moren.jpg') this.src = 'http://img.bjguahao.gov.cn/naja/default/images/moren.jpg';" width="200px" height="150px"></a></dt><dd class="yiyuan_co_dd"><p class="yiyuan_co_titl"><a href="/hp/appoint/1/142.htm">北京大学第三医院</a><span class="yiyuan_co_ddsp">三级甲等</span></p><div class="yiyuan_co_dd_div"><p><b class="yiyuan_telico2"></b>放号时间 : 07:00</p><p><b class="yiyuan_telico"></b>本院：010-82266699,第二门诊部:010-82951077(总机),中央党校:010-62805254</p><p><b class="yiyuan_telico1"></b>北京市海淀区花园北路49号；[第二门诊部]北京海淀区西三旗育新小区内23号楼；[中央党校院区]北京市海淀区大有庄100号(北五环肖家河桥西侧...</p></div></dd></dl><div class="yi_c_span_w"><span class="yi_c_span"><a href="/hp/appoint/1/142.htm" class="yiyuan_co_xzyy"></a></span></div></div></div><script type="text/javascript">
+    var pageOption={url:"/hp/search.htm",type:"get",data:{words:"\u5317\u4eac\u5927\u5b66\u7b2c\u4e09\u533b\u9662",miTypeId:"0",hospitalLevelId:"0",countyId:"0"}};</script><div id="yiyuan_list_rq"><ul class="yiyuan_list_rq_ul"><li class="yiyuan_list_rq_co"><a href="javascript:toPage(1);">首页</a></li><li class="yiyuan_list_rq_xzd"><a class="yiyuan_list_rq_xzd" href="javascript:toPage(1);">1</a></li><li class="yiyuan_list_rq_co"><a href="javascript:toPage(1);">尾页</a></li><li>共1页</li><li> 到 <input value="" id="yiyuan_list_rq_fy"> 页 </li><li><input type="button" value="" id="yiyuan_list_rq_btn" onclick="toPage($('#yiyuan_list_rq_fy').val())"></li></ul><input name="p_currentlyPage" type="hidden" value="1"/><input name="p_totalPage" type="hidden" value="1"/><script>
+    $(function(){$("#yiyuan_list_rq_fy").keydown(function(a){a=a.which;(a==13||a==10&&$.browser.msie&&$.browser.version<=6)&&toPage($("#yiyuan_list_rq_fy").val())})});
+    function toPage(a){var b=$("input[name='p_totalPage']").val();if($.isNumeric(a))if(a=parseInt(a),b=parseInt(b),!/^[1-9]\d*$/.test(a)||a>b)alert(prompts.page_error);else{if(typeof pageOption.data=="undefined"||!pageOption.data)pageOption.data={};pageOption.url.search(RegExp("([^$])\\{page\\}","g"))==-1?typeof pageOption.pageParam=="undefined"||!pageOption.pageParam?pageOption.data.page=a:pageOption.data[pageOption.pageParam]=a:pageOption.url=pageOption.url.format(a);if(typeof pageOption.type=="undefined"||
+        !pageOption.data||pageOption.type.toLowerCase()!="post"&&pageOption.type.toLowerCase()!="get")pageOption.type="get";StandardPost(pageOption.url,pageOption.data,pageOption.type)}else alert(prompts.page_error)}function StandardPost(a,b,c){c=$("<form method='"+c+"'></form>");c.attr({action:a});for(arg in b)a=$("<input type='hidden' />"),a.attr({name:arg}),a.val(b[arg]),c.append(a);c.appendTo(document.body).submit()}
+    String.prototype.format=function(){if(arguments.length==0)return this;var a;return a=this.replace(RegExp("\\{page\\}","g"),arguments[0])};</script></div></div><input name="hospitalLevel" type="hidden" value="0"/><input name="hospitalType" type="hidden" value="0"/><input name="hospitalCounty" type="hidden" value="0"/><input name="kwords" type="hidden" value="北京大学第三医院"/><script>
+    $(function(){wValChg("yyk","h");var a=$("input[name='hospitalLevel']").val(),b=$("input[name='hospitalType']").val(),c=$("input[name='hospitalCounty']").val(),g=$("input[name='kwords']").val(),d="#HospitalLevel"+a,e="#MedicalInstitution"+b,f="#County"+c;a=="0"?$(d).addClass("ksghny_dt_all"):$(d).addClass("ksghny_dh1_li_bs");b=="0"?$(e).addClass("ksghny_dt_all"):$(e).addClass("ksghny_dh1_li_bs");c=="0"?$(f).addClass("ksghny_dt_all"):$(f).addClass("ksghny_dh1_li_bs");$("#words").val(g)});
+    function toBooking(){logined==!1?popCenterWindow("#djdl","#djdl_close"):$("#yydj").attr("href","/order/book.htm")};</script><div id="fhdb"></div><div id="bg"></div><div id="footer"><div class="footer_nb"><div class="footer_img"><a class="footer_bjwjw" href="http://www.bjchfp.gov.cn/" target="_blank"></a><a class="footer_liantong" href="http://www.10010.com/" target="_blank"></a></div><div id="lxwm_div" class="footer_yb"><ul class="footer_ul"><li><a href="/gl/contact.htm">联系我们</a></li><li><a href="/gl/partener.htm">合作伙伴</a></li><li class="footer_ul_lipad"><a href="/gl/statement.htm">法律声明</a></li><li><a href="/gl/service.htm">服务协议</a></li><li><a href="/u/feedback.htm">意见反馈</a></li></ul><p class="footer_p_bqsm">版权所有:京ICP备05056889号</p></div><div name="ewm_div" class="footer_ewm"><h3>下载官方APP</h3><span class="footer_ewm_span_1"><img src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/footer_ewm2.png"></span></div><div name="ewm_div" class="footer_ewm"><h3>关注官方微信</h3><span class="footer_ewm_span_1"><img src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/footer_ewm.png?v=1.0"></span></div><div id="ewm_div_3" class="footer_ewm_1" style="display: none"><h3>关注快医微信</h3><span class="footer_ewm_span_1"><img src="http://img.bjguahao.gov.cn/ws/1.0/hs/images/footer_ewm3.png"></span></div></div></div><script type="text/javascript">
+    function goonLogin(){$(".djdl_fpsuts").hide();popCenterWindow("#djdl","#djdl_close");reloadImage($("#yzmdl"))}function submitModifyPass(){var a=$("#passWordfp"),b=$("#passWordAgainfp");if(!a.valid())return!1;if(!b.valid())return!1;$.ajax({type:"POST",dataType:"json",url:basePath+"help/rpassword.htm",data:{pass:a.val(),isAjax:!0},success:function(a){a.hasError?alert(a.msg):($("#djdl_fpsu").css({display:"none"}),popCenterWindow(".djdl_fpsuts","#djdl_fpsuts_close"))}})}
+    function checkForm(){var a=$("#djdl_fp_zjhm").val(),b=$("#djdl_fp_yzm").val(),c=$("#djdl_fp_sfzhm").val(),d=$("#djdl_fp_sjyz").val();if(!$("#djdl_fp_zjhm").valid())return!1;if(!$("#djdl_fp_yzm").valid())return!1;if(!$("#djdl_fp_sfzhm").valid())return!1;if(!isBindMobile("",""))return!1;if(!$("#djdl_fp_sjyz").valid())return!1;$.ajax({type:"POST",dataType:"json",url:basePath+"help/fpassword.htm",data:{cardNo:a,imageCode:b,phoneNo:c,phoneCode:d,isAjax:!0,channel:"zhmm"},success:function(a){a.hasError?
+            alert(a.msg):($("#djdl_fp_close").click(),popCenterWindow("#djdl_fpsu","#djdl_fpsu_close"))}})}function popDiv(){$("#djdl_close").click();popCenterWindow("#djdl_fpassword","#djdl_fp_close");reloadImage3($("#djdl_fp_yzmdl"),"zhmm")}function reloadImage(a){$(a).attr("src","/IdentityServlet?ts="+(new Date).getTime())}function reloadImage3(a,b){$(a).attr("src","/IdentityServlet?ts="+(new Date).getTime()+"&channel="+b)}
+    function isBindMobile(){var a=!1;$.ajax({url:basePath+"v/mobilefp.htm",type:"post",async:!1,data:{idNo:$("#djdl_fp_zjhm").val(),tupianyzm:$("#djdl_fp_yzm").val(),sms:$("#djdl_fp_sfzhm").val(),isAjax:!0},success:function(b){b!="true"?($("#djdl_fp_close").click(),popCenterWindow("#djdl_fpfalse",""),a=!1):a=!0}});return a}$(function(){footer_wrapBroadcastTimerInit()});var footer_wrapBroadcastFlag=!1,footer_wrapBroadcastTimers=[],footer_wrapBroadcastTimesInterval;
+    function footer_wrapBroadcastTimerInit(){try{$.ajax({url:basePath+"wbctimers/2.htm",type:"post",dataType:"json",success:function(a){if(a)if(a.code==1){if(a.data)footer_wrapBroadcastTimers=a.data,footer_initWrapBroadcastTransferTimer(),footer_wrapBroadcastTimesInterval=setInterval(footer_initWrapBroadcastTransferTimer,6E4)}else console.log(a.msg);else console.log("\u7cfb\u7edf\u7e41\u5fd9\uff0c\u8bf7\u7a0d\u540e\u518d\u8bd5!!!")},error:function(){console.log("\u7cfb\u7edf\u7e41\u5fd9\uff0c\u8bf7\u7a0d\u540e\u518d\u8bd5!!!")}})}catch(a){}}
+    function footer_initWrapBroadcastTransferTimer(){footer_wrapBroadcastTimers&&footer_wrapBroadcastTimers.length>0?$.each(footer_wrapBroadcastTimers,function(a,b){var c=b.startTime,d=b.endTime,e=!1;(e=c==null||c==""||d==null||d==""?!0:compareTime(c,d))?footer_wrapBroadcastFlag||(footer_wrapBroadcastFlag=!0,$("#lxwm_div").removeClass("footer_yb"),$("#lxwm_div").addClass("footer_yb_1"),$("div[name='ewm_div']").removeClass("footer_ewm"),$("div[name='ewm_div']").addClass("footer_ewm_1"),$("#ewm_div_3").css("display",
+        "block")):footer_wrapBroadcastFlag&&($("#lxwm_div").removeClass("footer_yb_1"),$("#lxwm_div").addClass("footer_yb"),$("div[name='ewm_div']").removeClass("footer_ewm_1"),$("div[name='ewm_div']").addClass("footer_ewm"),$("#ewm_div_3").css("display","none"))}):clearInterval(footer_wrapBroadcastTimesInterval)}
+    function compareTime(a,b){var c=new Date,d=c.toLocaleTimeString("chinese",{hour12:!1}).split(":"),e=a.split(":"),f=b.split(":"),d=c.setHours(d[0],d[1]),e=c.setHours(e[0],e[1]),c=c.setHours(f[0],f[1]);return e<=d&&d<=c?!0:!1}
+    $(function(){initValidatorFindPW();initValidatorFindPW2();sendSmsCodeBtn({GLVar:"btnSendCodeVLogin",btnId:"#btnSendCodeVLogin",formId:"#rg_nrfrom2",url:basePath+"v/sendcodecommon.htm",valid:function(){if(!$("#zjhmVerifyLogin").valid())return!1;if(!$("#mobileVerifyLogin").valid())return!1;if(!$("#yzmVerifyLogin").valid())return!1;return!0},ok:function(){$("#vresultspan").html("<p class='sms_suce' for='nameVerifyLogin' generated='true'>\u77ed\u4fe1\u53d1\u9001\u6210\u529f,\u8bf75\u5206\u949f\u5185\u8f93\u5165.</p>")},
+        notok:function(a){$("#vresultspan").html("<p class='error' for='nameVerifyLogin' generated='true'>"+a.msg+"</p>")},error:function(){$("#vresultspan").html("<p class='error' for='nameVerifyLogin' generated='true'>\u77ed\u4fe1\u53d1\u9001\u5931\u8d25.</p>")}});sendSmsCodeBtn({GLVar:"btnSendCodeFPW",btnId:"#btnSendCodeFPW",formId:"#rg_nrfrom6",url:basePath+"v/sendcodecommon.htm",valid:function(){if(!$("#djdl_fp_zjhm").valid())return!1;if(!$("#djdl_fp_yzm").valid())return!1;if(!$("#djdl_fp_sfzhm").valid())return!1;
+            if(!isBindMobile("",""))return!1;return!0},ok:function(){alert(prompts.sms_code_send_ok)},notok:function(a){alert(a.msg)},error:function(){alert(prompts.sms_code_send_failed)}})});</script><script type="text/javascript">
+    wValChg('yyk','h');
+</script><script type="text/javascript">
+
+    $(function(){
+        fixedBoxBackTop();
+        fixedBoxHover();
+        function fixedBoxHover() {
+            var a = $(".float-div .fixed-right-part");
+            a.each(function(b) {
+                var c = $(this);
+                c.hover(function() {
+                    $(this).addClass("fixed-right-part-hover")
+                }, function() {
+                    $(this).removeClass("fixed-right-part-hover")
+                })
+            })
+        }
+        function fixedBoxBackTop() {
+            var a = $(window).scrollTop();
+            var b = $("#back-top");
+            if (a > 50) {
+                b.addClass("back-top-active")
+            } else {
+                b.removeClass("back-top-active")
+            }
+            $(window).scroll(function() {
+                a = $(window).scrollTop();
+                if (a > 50) {
+                    b.addClass("back-top-active")
+                } else {
+                    b.removeClass("back-top-active")
+                }
+            });
+            b.click(function() {
+                $("html,body").animate({
+                    scrollTop: "0px"
+                }, 300)
+            })
+        }
+
+    });
+</script><script src="http://img.bjguahao.gov.cn/ws/1.0/hs/js/ymxg.js"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?bc7eaca5ef5a22b54dd6ca44a23988fa";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script></body></html>
