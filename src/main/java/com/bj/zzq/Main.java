@@ -1,5 +1,7 @@
 package com.bj.zzq;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
@@ -16,6 +18,7 @@ import org.apache.http.protocol.ResponseContent;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import sun.awt.SunHints;
 
@@ -24,13 +27,12 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 取消预约后，该号不会马上放出来，fuck~
+ * fuck,验证码一天发送次数不能超过10次，玩完~
  *
  * @Author: zhaozhiqiang
  * @Date: 2019/1/8
@@ -38,44 +40,47 @@ import java.util.Scanner;
  */
 public class Main {
     private static String cookie = "";
-    private static Map orderParams = new HashMap<String, String>();
+    private static HashMap<String, String> orderParams = new HashMap<String, String>();
     private static String domain = "http://www.bjguahao.gov.cn";
     private static String loginUrl = "http://www.bjguahao.gov.cn/quicklogin.htm";
 
     static {
+        //默认值
         orderParams.put("hospitalType", "1");
+        orderParams.put("hospitalCardId", "");
+        orderParams.put("medicareCardId", "");
+
+        //固定参数
+        orderParams.put("childrenBirthday", "");
+        orderParams.put("dlRegType", "-1");
+        orderParams.put("dlMajorId", "");
+        orderParams.put("mapDoctorId", "");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, URISyntaxException {
         Main main = new Main();
         String username = "18511914092";
         String password = "zzq798828932";
-//        //医院名称，全称
-//        String hospitalName = "";
-//        //科室名称，全称
-//        String departmentName = "";
-//        //预约日期 yyyy-MM-dd
-//        String date = "";
-//        //上午还是下午 1-上午，2-下午
-//        String amOrPm = "";
-//        //医生名称,包括 普通门诊、副主任医师、主任医师、真正姓名
-//        String doctorName = "";
-//        //医生职位,包括 普通门诊、副主任医师、主任医师、知名专家
-//        String doctorPosition = "";
-
+        //医院名称，全称
+        String hospitalName = "北京大学第三医院";
+        //科室名称，全称
+        String departmentName = "中医科门诊";
+        //预约日期 yyyy-MM-dd
+        String date = "2019-01-17";
+        //上午还是下午 1-上午，2-下午
+        String timeSlot = "1";
+        //医生名称,包括 普通门诊、副主任医师、主任医师、真正姓名
+        String doctorName = "普通门诊";
+        //医生职位,包括 普通门诊、副主任医师、主任医师、知名专家
+        String doctorPosition = "";
+        //病人名称
+        String patientName = "赵志强";
+        //报销类型 1-医保卡
+        String reimbursementType = "1";
         //登录账号
         main.login(username, password);
-        main.hospitalId("北京大学第三医院");
-        //main.cancleOrder("100747890");
-        //因为验证码发送较慢，先发送
-        //main.sendValidateCode();
-        //出诊号-北京大学第三医院-中医科-普通门诊（医生）-病人id-就医卡号-医保卡号-报销类型-验证码
-//        String[] test = {"59981348", "142", "200039608", "201147114", "230962426", "", "", "1"};
-//        //先从控制台获取验证码
-//        System.out.print("请输入验证码：");
-//        Scanner scan = new Scanner(System.in);
-//        String validateCode = scan.nextLine();
-//        main.order(test[0], test[1], test[2], test[3], test[4], test[5], test[6], test[7], validateCode);
+        main.sendValidateCode();
+        main.doOrder(hospitalName, departmentName, timeSlot, date, doctorName, patientName, reimbursementType);
     }
 
     public static String base64ToString(String str) {
@@ -88,7 +93,7 @@ public class Main {
     }
 
     //请求工具
-    public static String doHttp(String method, String url, HashMap<String, String> headers, HashMap<String, String> params) {
+    public static String doHttp(String method, String url, HashMap<String, String> headers, HashMap<String, String> params) throws URISyntaxException, IOException {
         //默认http客户端，毫秒级
         CloseableHttpClient httpclient = HttpClients.createDefault();
 
@@ -107,13 +112,7 @@ public class Main {
             }
         }
 
-
-        URI uri = null;
-        try {
-            uri = builder.build();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        URI uri = builder.build();
 
         // 创建http请求
         HttpRequestBase httpRequestBase = null;
@@ -138,16 +137,24 @@ public class Main {
         RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
         httpRequestBase.setConfig(config);
 
-        String result = "";
-        try {
-            // 执行请求
-            CloseableHttpResponse response = httpclient.execute(httpRequestBase);
-            result = EntityUtils.toString(response.getEntity(), "UTF-8");
+        // 执行请求
+        CloseableHttpResponse response = httpclient.execute(httpRequestBase);
+        String result = EntityUtils.toString(response.getEntity(), "UTF-8");
 
-            if ("http://www.bjguahao.gov.cn/quicklogin.htm".equals(url))
-        } catch (IOException e) {
-            e.printStackTrace();
+        // 如果是登录请求，获取cookie
+        if (loginUrl.equals(url)) {
+            Header[] allHeaders = response.getAllHeaders();
+            for (Header header : allHeaders) {
+                String name = header.getName();
+                if ("Set-Cookie".equals(name)) {
+                    String value = header.getValue();
+                    value = value.substring(0, value.indexOf(";") + 1);
+                    cookie += " " + value;
+                }
+            }
+            cookie = cookie.substring(1);
         }
+
         return result;
 
     }
@@ -155,7 +162,7 @@ public class Main {
     /**
      * 登录
      */
-    public void login(String username, String password) {
+    public void login(String username, String password) throws IOException, URISyntaxException {
         //登录地址
         String loginUrl = "http://www.bjguahao.gov.cn/quicklogin.htm";
 
@@ -163,102 +170,63 @@ public class Main {
         HashMap<String, String> params = new HashMap();
         params.put("mobileNo", base64ToString(username));
         params.put("password", base64ToString(password));
+
         //固定参数
         params.put("yzm", "");
         params.put("isAjax", "true");
 
-        String result = doHttp("post", loginUrl, null, params);
-
-        //获取cookie
-        Header[] allHeaders = response.getAllHeaders();
-        //获取cookie
-        for (Header header : allHeaders) {
-            String name = header.getName();
-            if ("Set-Cookie".equals(name)) {
-                String value = header.getValue();
-                value = value.substring(0, value.indexOf(";") + 1);
-                cookie += " " + value;
-            }
-        }
-        cookie = cookie.substring(1);
-
         //返回内容
-        try {
-            String result = EntityUtils.toString(response.getEntity(), "UTF-8");
-            JSONObject jsonObject = (JSONObject) JSONObject.parse(result);
-            Boolean hasError = jsonObject.getBoolean("hasError");
-            Integer code = jsonObject.getInteger("code");
-            if (hasError == false && code == 200) {
-                System.out.println("-------------------");
-                System.out.println("     登录成功");
-                System.out.println("-------------------");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        String result = doHttp("post", loginUrl, null, params);
+        JSONObject jsonObject = (JSONObject) JSONObject.parse(result);
+        Boolean hasError = jsonObject.getBoolean("hasError");
+        Integer code = jsonObject.getInteger("code");
+        if (hasError == false && code == 200) {
+            System.out.println("-------------------");
+            System.out.println("     登录成功");
+            System.out.println("-------------------");
         }
-
     }
 
     /**
      * 发送验证码
      */
-    public void sendValidateCode() {
+    public void sendValidateCode() throws IOException, URISyntaxException {
         String url = "http://www.bjguahao.gov.cn/v/sendorder.htm";
         String method = "POST";
-        CloseableHttpResponse response = doHttp(method, url, null, null);
-        try {
-            String result = EntityUtils.toString(response.getEntity(), "UTF-8");
-            System.out.println("发送验证码返回结果：" + result);
-            System.out.println("请赶紧将验证码输入...");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String result = doHttp(method, url, null, null);
+        System.out.println("发送验证码返回结果：" + result);
+        System.out.println("请赶紧将验证码输入...");
     }
 
     /**
      * 预约请求
-     *
-     * @param dutySourceId      出诊号
-     * @param hospitalId        医院id
-     * @param departmentId      科室id
-     * @param doctorId          医生id
-     * @param patientId         病人id
-     * @param hospitalCardId    就医卡号
-     * @param medicareCardId    医保卡号
-     * @param reimbursementType 报销类型
-     * @param smsVerifyCode     验证码
+     * dutySourceId      出诊号
+     * hospitalId        医院id
+     * departmentId      科室id
+     * doctorId          医生id
+     * patientId         病人id
+     * hospitalCardId    就医卡号
+     * medicareCardId    医保卡号
+     * reimbursementType 报销类型
      */
-    public void order(String dutySourceId, String hospitalId, String departmentId, String doctorId, String patientId, String hospitalCardId, String medicareCardId, String reimbursementType, String smsVerifyCode) {
+    public void order(HashMap<String, String> params) throws IOException, URISyntaxException {
         String orderUrl = "http://www.bjguahao.gov.cn/order/confirmV1.htm";
         String method = "POST";
-        HashMap<String, String> params = new HashMap<>();
-        params.put("dutySourceId", dutySourceId);
-        params.put("hospitalId", hospitalId);
-        params.put("departmentId", departmentId);
-        params.put("doctorId", doctorId);
-        params.put("patientId", patientId);
-        params.put("hospitalCardId", hospitalCardId);
-        params.put("medicareCardId", medicareCardId);
-        params.put("reimbursementType", reimbursementType);
-        params.put("smsVerifyCode", smsVerifyCode);
-        //固定参数
-        params.put("childrenBirthday", "");
-        params.put("dlRegType", "-1");
-        params.put("dlMajorId", "");
-        params.put("mapDoctorId", "");
-        CloseableHttpResponse response = doHttp(method, orderUrl, null, params);
-        try {
-            String result = EntityUtils.toString(response.getEntity(), "UTF-8");
-            JSONObject jsonObject = (JSONObject) JSONObject.parse(result);
-            Integer code = jsonObject.getInteger("code");
-            String orderId = jsonObject.getString("orderId");
-            if (code == 1) {
-                System.out.println("预约成功,订单号为:" + orderId + "，具体内容请查看手机短信提示");
-            } else {
-                System.out.println("预约失败：" + result);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        //验证码是手动输入
+        System.out.println("请输入验证码：");
+        Scanner scan = new Scanner(System.in);
+        String validateCode = scan.nextLine();
+        params.put("smsVerifyCode", validateCode);
+
+        String result = doHttp(method, orderUrl, null, params);
+        JSONObject jsonObject = (JSONObject) JSONObject.parse(result);
+        Integer code = jsonObject.getInteger("code");
+        String orderId = jsonObject.getString("orderId");
+        if (code == 1) {
+            System.out.println("预约成功,订单号为:" + orderId + "，具体内容请查看手机短信提示");
+        } else {
+            System.out.println("预约失败：" + result);
         }
     }
 
@@ -267,7 +235,7 @@ public class Main {
      *
      * @param orderId 订单号
      */
-    public void cancleOrder(String orderId) {
+    public void cancleOrder(String orderId) throws IOException, URISyntaxException {
         String url = "http://www.bjguahao.gov.cn/order/cel.htm";
         String method = "post";
 
@@ -275,45 +243,124 @@ public class Main {
         params.put("orderId", orderId);
         params.put("hospitalType", "1");//todo:目前暂时全部填1
         params.put("isAjax", "true");
-        CloseableHttpResponse response = doHttp(method, url, null, params);
-        String result = null;
-        try {
-            result = EntityUtils.toString(response.getEntity(), "UTF-8");
-            //{"code":200,"msg":"OK"}
-            JSONObject jsonObject = (JSONObject) JSONObject.parse(result);
-            Integer code = jsonObject.getInteger("code");
-            if (code == 200) {
-                System.out.println("取消预约成功！");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        String result = doHttp(method, url, null, params);
+        //{"code":200,"msg":"OK"}
+        JSONObject jsonObject = (JSONObject) JSONObject.parse(result);
+        Integer code = jsonObject.getInteger("code");
+        if (code == 200) {
+            System.out.println("取消预约成功！");
         }
     }
 
     /**
-     * @param hospitalName 医院名称(需要全称)
+     * @param hospitalName      医院名称
+     * @param departmentName    科室名
+     * @param timeSlot          时间段
+     * @param doctorName        医生姓名
+     * @param patientName       病人姓名
+     * @param reimbursementType 报销类型 1-医保，其他的后面再弄
+     * @throws IOException
+     * @throws URISyntaxException
      */
-    public void hospitalId(String hospitalName) throws IOException {
+    public void doOrder(String hospitalName, String departmentName, String timeSlot, String orderDate, String doctorName, String patientName, String reimbursementType) throws IOException, URISyntaxException {
 
+        //医院id
         String searchUrl = "http://www.bjguahao.gov.cn/hp/search.htm";
         String method = "GET";
         HashMap<String, String> params = new HashMap<>();
         params.put("words", hospitalName);
-
-        CloseableHttpResponse response = doHttp(method, searchUrl, null, params);
-
-        String result = EntityUtils.toString(response.getEntity(), "UTF-8");
-        //返回的是html页面
+        String result = doHttp(method, searchUrl, null, params);
+        //返回html页面
         Document document = Jsoup.parse(result);
         Elements hospitalLink = document.select("a.yiyuan_co_xzyy");
-        String hospitalHref = hospitalLink.attr("href");
+        String hospitalHref = hospitalLink.get(0).attr("href");
         //example /hp/appoint/1/142.htm
         String[] split = hospitalHref.split("/");
-        String hospitalId = split[4].substring(0, split[4].length() - 3);
+        String hospitalId = split[4].substring(0, split[4].length() - 4);
         orderParams.put("hospitalId", hospitalId);
+        //放号时间
+        Elements elements1 = document.select("b.yiyuan_telico2");
+        Element element = elements1.get(0).parent();
+        String outNumTime = element.text();
+        System.out.println(hospitalName + " 该医院放号时间为:" + outNumTime);
 
-        CloseableHttpResponse get = doHttp("GET", domain + hospitalHref, null, null);
+        //科室id
+        String result2 = doHttp("GET", domain + hospitalHref, null, null);
+        Document document1 = Jsoup.parse(result2);
+        Elements elements = document1.select("a.kfyuks_islogin");
+        Iterator<Element> iterator = elements.iterator();
+        String departmentHref = "";
+        while (iterator.hasNext()) {
+            Element next = iterator.next();
+            String text = next.text();
+            if (departmentName.equals(text)) {
+                departmentHref = next.attr("href");
+                break;
+            }
+        }
+        String[] split1 = departmentHref.split("/");
+        //  /dpt/appoint/12-200004205.htm
+        String departmentId = split1[3].substring(split1[3].indexOf("-") + 1, split1[3].indexOf("."));
+        orderParams.put("departmentId", departmentId);
 
+        // 查询是否有号
+        //hospitalId=142&departmentId=200039608&dutyCode=1&dutyDate=2019-01-17&isAjax=true
+        String queryNum = "http://www.bjguahao.gov.cn/dpt/partduty.htm";
+        HashMap<String, String> params2 = new HashMap<>();
+        params2.put("hospitalId", orderParams.get("hospitalId"));
+        params2.put("departmentId", orderParams.get("departmentId"));
+        params2.put("dutyCode", timeSlot);//1-上午 2-下午
+        params2.put("dutyDate", orderDate);//日期 yyyy-MM-dd
+        params2.put("isAjax", "true");
+
+        String result3 = doHttp("POST", queryNum, null, params2);
+        if (result3 == null) {
+            System.out.println("此时间段没号了，换个时间约？");
+            return;
+        }
+        JSONObject jsonObject = (JSONObject) JSON.parse(result3);
+        JSONArray data = (JSONArray) jsonObject.get("data");
+        for (int i = 0; i < data.size(); i++) {
+            JSONObject o = (JSONObject) data.get(i);
+            //剩余号个数
+            int remainAvailableNumber = o.getIntValue("remainAvailableNumber");
+            if (remainAvailableNumber <= 0) {
+                continue;
+            }
+            String doctorName1 = o.getString("doctorName");
+            if (doctorName.equals(doctorName1)) {
+                //约吧，还等啥
+
+                //出诊号
+                Integer dutySourceId = o.getInteger("dutySourceId");
+                orderParams.put("dutySourceId", String.valueOf(dutySourceId));
+
+                //医生id
+                String doctorId = o.getString("doctorId");
+                orderParams.put("doctorId", doctorId);
+
+                //病人id
+                // /order/confirm/142-200039608-201147114-59981348.htm
+                // 从左到右依次为：医院id-科室id-医生id-出诊号
+                String orderHtmlUrl = domain + "/order/confirm/" + hospitalId + "-" + departmentId + "-" + doctorId + "-" + dutySourceId + ".htm";
+                String result4 = doHttp("GET", orderHtmlUrl, null, null);
+                Document document2 = Jsoup.parse(result4);
+                Elements elements2 = document2.select("input[name='hzr']");
+                Iterator<Element> iterator1 = elements2.iterator();
+                while (iterator1.hasNext()) {
+                    Element next = iterator1.next();
+                    String text = next.text();
+                    if (text.contains(patientName)) {
+                        //就是这个病人要抢号
+                        String patientId = next.attr("value");
+                        orderParams.put("patientId", patientId);
+                        orderParams.put("reimbursementType", reimbursementType);
+                        order(orderParams);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
 
