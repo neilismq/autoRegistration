@@ -64,15 +64,15 @@ public class Main {
         //医院名称，全称
         String hospitalName = "北京大学第三医院";
         //科室名称，全称
-        String departmentName = "中医科门诊";
+        String departmentName = "骨科门诊";
         //预约日期 yyyy-MM-dd
-        String date = "2019-01-17";
+        String date = "2019-01-22";
         //上午还是下午 1-上午，2-下午
         String timeSlot = "1";
         //医生名称,包括 普通门诊、副主任医师、主任医师、真正姓名
-        String doctorName = "普通门诊";
+        String doctorName = "副主任医师";
         //医生职位,包括 普通门诊、副主任医师、主任医师、知名专家
-        String doctorPosition = "";
+        String doctorPosition = "知名专家";
         //病人名称
         String patientName = "赵志强";
         //报销类型 1-医保卡
@@ -80,7 +80,7 @@ public class Main {
         //登录账号
         main.login(username, password);
         main.sendValidateCode();
-        main.doOrder(hospitalName, departmentName, timeSlot, date, doctorName, patientName, reimbursementType);
+        main.doOrder(hospitalName, departmentName, timeSlot, date, doctorName, doctorPosition, patientName, reimbursementType);
     }
 
     public static String base64ToString(String str) {
@@ -262,7 +262,7 @@ public class Main {
      * @throws IOException
      * @throws URISyntaxException
      */
-    public void doOrder(String hospitalName, String departmentName, String timeSlot, String orderDate, String doctorName, String patientName, String reimbursementType) throws IOException, URISyntaxException {
+    public void doOrder(String hospitalName, String departmentName, String timeSlot, String orderDate, String doctorName, String doctorPosition, String patientName, String reimbursementType) throws IOException, URISyntaxException {
 
         //医院id
         String searchUrl = "http://www.bjguahao.gov.cn/hp/search.htm";
@@ -328,7 +328,8 @@ public class Main {
                 continue;
             }
             String doctorName1 = o.getString("doctorName");
-            if (doctorName.equals(doctorName1)) {
+            String doctorTitleName = o.getString("doctorTitleName");
+            if (doctorPosition.equals(doctorTitleName)) {
                 //约吧，还等啥
 
                 //出诊号
