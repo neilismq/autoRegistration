@@ -40,6 +40,7 @@ import java.util.*;
  */
 public class Main {
     private static String cookie = "";
+    //预约参数
     private static HashMap<String, String> orderParams = new HashMap<String, String>();
     private static String domain = "http://www.bjguahao.gov.cn";
     private static String loginUrl = "http://www.bjguahao.gov.cn/quicklogin.htm";
@@ -79,8 +80,11 @@ public class Main {
         String reimbursementType = "1";
         //登录账号
         main.login(username, password);
+
         main.sendValidateCode();
         main.doOrder(hospitalName, departmentName, timeSlot, date, doctorName, doctorPosition, patientName, reimbursementType);
+
+
     }
 
     public static String base64ToString(String str) {
@@ -357,7 +361,8 @@ public class Main {
                 Iterator<Element> iterator1 = elements2.iterator();
                 while (iterator1.hasNext()) {
                     Element next = iterator1.next();
-                    String text = next.text();
+                    Element parent = next.parent();
+                    String text = parent.text();
                     if (text.contains(patientName)) {
                         //就是这个病人要抢号
                         String patientId = next.attr("value");
@@ -367,6 +372,7 @@ public class Main {
                         return true;
                     }
                 }
+                break;
             }
         }
         return false;
