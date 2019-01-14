@@ -133,9 +133,9 @@ public class Main {
         }
 
         //设置代理,方便查看请求
-        HttpHost proxy = new HttpHost("127.0.0.1", 8888, "http");
-        RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
-        httpRequestBase.setConfig(config);
+//        HttpHost proxy = new HttpHost("127.0.0.1", 8888, "http");
+//        RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+//        httpRequestBase.setConfig(config);
 
         // 执行请求
         CloseableHttpResponse response = httpclient.execute(httpRequestBase);
@@ -312,11 +312,18 @@ public class Main {
         params2.put("dutyCode", timeSlot);//1-上午 2-下午
         params2.put("dutyDate", orderDate);//日期 yyyy-MM-dd
         params2.put("isAjax", "true");
+        int n = 0;
+        boolean isGet = false;
+        while (n++ < 100 || !isGet) {
+            isGet = doOrder(doctorPosition, patientName, reimbursementType, hospitalId, departmentId, queryNum, params2);
+        }
+    }
 
+    private boolean doOrder(String doctorPosition, String patientName, String reimbursementType, String hospitalId, String departmentId, String queryNum, HashMap<String, String> params2) throws URISyntaxException, IOException {
         String result3 = doHttp("POST", queryNum, null, params2);
         if (result3 == null) {
             System.out.println("此时间段没号了，换个时间约？");
-            return;
+            return false;
         }
         JSONObject jsonObject = (JSONObject) JSON.parse(result3);
         JSONArray data = (JSONArray) jsonObject.get("data");
@@ -357,11 +364,12 @@ public class Main {
                         orderParams.put("patientId", patientId);
                         orderParams.put("reimbursementType", reimbursementType);
                         order(orderParams);
-                        break;
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 
 
