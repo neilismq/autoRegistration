@@ -1,0 +1,49 @@
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="scope_user_id"
+
+
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="scope_user_name"
+
+
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="is_sms_send"
+
+
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="ajax"
+
+0
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="add_file"
+
+
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="folder"
+
+{$folder}
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="fid"
+
+{$folder}
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="opmode"
+
+add
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="name"
+
+111
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="sort"
+
+11
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="sms_content"
+
+
+------WebKitFormBoundarygqYPA3p4qhDrhGQN
+Content-Disposition: form-data; name="content"
+
+<p>1231</p>
+------WebKitFormBoundarygqYPA3p4qhDrhGQN--
